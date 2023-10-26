@@ -1,0 +1,62 @@
+<app-tool-bar></app-tool-bar>
+
+<main>
+
+    <mat-table [dataSource]="questionCompare" class="descriptor-table">
+            
+        <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"></th>
+            <td mat-cell *matCellDef="let element" style="margin: 0 auto;text-align: center;"> 
+                <ng-container >
+                    {{ element.value }}
+                </ng-container> 
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="question">
+              <th mat-header-cell *matHeaderCellDef style="font-size: 30px; text-align: center;"></th>
+                  <td mat-cell *matCellDef="let element" class="left-align vertical-center"> {{ (element.question) }} </td>
+          </ng-container>
+
+       
+
+          <tr mat-header-row *matHeaderRowDef="questionColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: questionColumns;"></tr>
+    </mat-table>
+    <div>
+        <ng-container *ngFor="let filteredStyle of filteredStyles">
+            <mat-table [dataSource]="[filteredStyle]"  class="margin-table">
+            
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center;">ID</th>
+                    <td mat-cell *matCellDef="let element" style="margin: 0 auto;text-align: center;"> 
+                        <ng-container >
+                            {{ element.id }}
+                        </ng-container> 
+                    </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="style1">
+                      <th mat-header-cell *matHeaderCellDef style="font-size: 18px; text-align: center;">Estilo 1</th>
+                          <td mat-cell *matCellDef="let element" class="left-align vertical-center"> {{ (element.style1) }} </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="style2">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 18px; text-align: center;">Estilo 2</th>
+                        <td mat-cell *matCellDef="let element" class="left-align vertical-center"> {{ (element.style2) }} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="style3">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 18px; text-align: center;">Estilo 3</th>
+                        <td mat-cell *matCellDef="let element" class="left-align vertical-center"> {{ (element.style3) }} </td>
+                </ng-container>
+    
+                  <tr mat-header-row *matHeaderRowDef="styleColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: styleColumns;"></tr>
+            </mat-table>
+        </ng-container>
+        
+    </div>
+    
+   
+</main> 
