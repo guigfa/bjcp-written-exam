@@ -1,0 +1,81 @@
+:root {
+    font-family: 'Graphie', 'sans-serif';
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 1536px;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    min-width: 1536px;
+    width: 100%;
+}
+
+mat-toolbar {
+    width: 1536px;
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-toolbar span {
+    padding-left: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+ul li {
+    padding: 20px 20px 20px 0px;
+}
+
+.main-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.margin-table {
+    width: 1300px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #FEFEFE !important;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1300px;
+    margin: 20px auto;
+}
+
+.send-button {
+    justify-self: center;
+    padding: 30px;
+    width: 150px;
+}
+
+.descriptor-table {
+    width: 500px !important;
+    border: 1px solid black !important;
+    margin-bottom: 20px;
+}
+
+.descriptor-table  tr {
+    width: 825px;
+    height: 25px;
+}
+
+.descriptor-table  td {
+    border-right: 1px solid black !important;
+}

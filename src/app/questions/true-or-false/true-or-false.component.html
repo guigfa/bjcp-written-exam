@@ -1,0 +1,55 @@
+<app-tool-bar></app-tool-bar>    
+    <main>
+        <div [formGroup]="form">
+            <mat-table [dataSource]="questionsToDisplay" *ngIf="!result" class="margin-table">
+                
+                <ng-container matColumnDef="value">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center; width: 150px;">Resposta</th>
+                    <td mat-cell *matCellDef="let element" style="margin: 0 auto; width: 150px;"> 
+                        <ng-container>
+                                <mat-radio-group (change)="changeQuestions($event, element.id)">
+                                    F<mat-radio-button [value]="false"></mat-radio-button>
+                                    V<mat-radio-button [value]="true"></mat-radio-button>
+                                </mat-radio-group>
+                        </ng-container> 
+                    </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="description">
+                      <th mat-header-cell *matHeaderCellDef style="font-size: 30px; text-align: center;">Pergunta</th>
+                          <td mat-cell *matCellDef="let element" class="left-align vertical-center"> {{ (element.description) }} </td>
+                  </ng-container>
+    
+                  <tr mat-header-row *matHeaderRowDef="questionsColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: questionsColumns;"></tr>
+            </mat-table>
+        </div>
+        
+        <button mat-raised-button class="send-button" (click)="checkAnswer()" *ngIf="!result">Enviar respostas</button>
+    
+        <div *ngIf="result" style="display: flex; flex-direction: column; gap: 12px">
+            
+            <span style="font-size:32px;">Parabéns, você acertou {{ count }}/{{questionsToDisplay.length}}</span>
+            <hr>
+            <mat-table [dataSource]="wrongQuestions" *ngIf="result" class="margin-table">
+                
+                <ng-container matColumnDef="value">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center; width: 150px;">Resposta Correta</th>
+                    <td mat-cell *matCellDef="let element" style="margin: 0 auto; width: 150px;"> 
+                        <ng-container>
+                                <span>{{ element.value === false ? "Falso" : "Verdadeiro" }}</span>
+                        </ng-container> 
+                    </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="description">
+                      <th mat-header-cell *matHeaderCellDef style="font-size: 30px; text-align: center;">Pergunta</th>
+                          <td mat-cell *matCellDef="let element" class="left-align vertical-center"> {{ (element.description) }} </td>
+                  </ng-container>
+    
+                  <tr mat-header-row *matHeaderRowDef="questionsColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: questionsColumns;"></tr>
+            </mat-table>
+            <button mat-raised-button (click)="backToTable()">Tentar novamente!</button>
+        </div>
+    </main> 
