@@ -11,11 +11,18 @@ O BJCP Written Exam Generator é uma ferramenta útil para candidatos que deseja
 
 ## Como Usar
 1. Clone este repositório em seu ambiente local:
-- git clone https://github.com/guigfa/bjcp-written-exam.git
+
+```console
+git clone https://github.com/guigfa/bjcp-written-exam.git
+```
 
 2. Execute o comando no terminal:
+```console
 - git checkout main
 - git pull
+```
 
 3. Na sua IDE de preferência, inicie o projeto com:
+```console
 - ng serve
+```
