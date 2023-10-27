@@ -3,11 +3,17 @@
         <mat-toolbar color="primary">
             <span class="title" (click)="redirectToMainPage()">BJCP Written Exam Generator</span>
          
-            <!-- <ul style="display: flex; ">
-                <li>V/F</li>
-                <li>Insumos</li>
-                <li>Processos</li>
-            </ul> -->
+            
+            <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Estudo de Insumos</button>
+                <hr>
+                <button mat-menu-item>Estudo de Processos</button>
+                <hr>
+                <button mat-menu-item>Fórmulas/Utilidades   </button>
+
+
+            </mat-menu>
         </mat-toolbar>
     </header>
     

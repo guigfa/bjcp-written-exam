@@ -10,14 +10,6 @@ export class ToolBarComponent {
 
   constructor(private router: Router){}
 
-  generateTest() {
-    
-  }
-
-  generateTrueOrFalse() {
-    this.router.navigate(['/questoes'])
-  }
-
   redirectToMainPage() {
     this.router.navigate([''])
   }

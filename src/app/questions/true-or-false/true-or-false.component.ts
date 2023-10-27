@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { trueOrFalseMock } from 'src/shared/material/lists/true-or-false';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { trueOrFalseMock } from 'src/shared/material/questions/true-or-false';
 
 @Component({
   selector: 'app-true-or-false',
@@ -27,7 +28,7 @@ export class TrueOrFalseComponent implements OnInit {
   })
   result = false;
 
-  constructor(){
+  constructor(private router: Router){
   }
 
   ngOnInit(): void {
@@ -69,7 +70,16 @@ export class TrueOrFalseComponent implements OnInit {
   }
 
   checkAnswer(){
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
     this.result = true;
+
+    localStorage.setItem("DATA", JSON.stringify(`${day}/${month}/${year}`))
+    localStorage.setItem("ACERTOS", this.count.toString());
+    localStorage.setItem("TENTATIVAS", this.questionsToDisplay.length.toString())
+    console.log(this.questionsToDisplay.length)
   } 
 
   backToTable(){
@@ -78,5 +88,9 @@ export class TrueOrFalseComponent implements OnInit {
     this.questionsToDisplay = [];
     this.result = false;
     this.generateQuestions();
+  }
+
+  back() {
+    this.router.navigate([''])
   }
 }

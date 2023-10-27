@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MaterialModule } from 'src/shared/material/material.module';
@@ -23,6 +24,7 @@ import { TrueOrFalseComponent } from './questions/true-or-false/true-or-false.co
     ProccessAndSuppliesComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     MaterialModule,

@@ -18,6 +18,10 @@ header {
     width: 100%;
 }
 
+mat-table {
+    border: 1px solid black;
+}
+
 mat-toolbar {
     width: 1536px;
     display: flex;
@@ -78,4 +82,13 @@ main {
 
 .descriptor-table  td {
     border-right: 1px solid black !important;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.mat-column-id {
+    flex: 0 0 5%;
 }

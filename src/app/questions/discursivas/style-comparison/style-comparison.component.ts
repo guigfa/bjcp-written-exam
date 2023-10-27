@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { beerDataComparison } from 'src/shared/material/lists/beer-comparison';
+import { Router } from '@angular/router';
+import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
+import { S0, S0TITLE } from 'src/shared/material/questions/questions';
 
 @Component({
   selector: 'app-style-comparison',
@@ -22,21 +24,12 @@ export class StyleComparison implements OnInit {
     'value',
     'question'
   ];
+  QS0 = S0;
+  QS0TITLE = S0TITLE
 
-  questionCompare = [
-    {
-      value: '50%',
-      question: 'Describe the aroma, appearance, flavor and mouthfeel of each style according to the current BJCP Beer Style Guidelines.'
-    },
-    {
-    value: '40%',
-    question: 'Compare and contrast the three styles based on aspects such as ingredients, characteristics (e.g., aroma, appearance, flavor, mouthfeel, vital statistics, etc.), and background information (e.g., history, brewing processes, fermentation techniques, serving methods, etc.) that distinguish each style. '
-    },
-    {
-    value: '10%',
-    question: 'For each of the styles, name one commercial example as listed in the current BJCP Style Guidelines.'
-    }
-  ]
+  constructor(private router: Router){
+
+  }
 
   ngOnInit(): void {
     this.getIdsOfComparisons();
@@ -50,4 +43,8 @@ export class StyleComparison implements OnInit {
       if(!this.stylesToCompare.find(style => style.id === number)) this.getIdsOfComparisons();
       this.filteredStyles.push(this.stylesToCompare.find(style => style.id === number));
   })}
+
+  back(){
+    this.router.navigate(['']);
+  }
 }

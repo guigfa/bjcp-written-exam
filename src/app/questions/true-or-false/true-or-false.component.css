@@ -58,4 +58,10 @@ main {
     justify-self: center;
     padding: 30px;
     width: 150px;
+    margin: 0 auto;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
 }
