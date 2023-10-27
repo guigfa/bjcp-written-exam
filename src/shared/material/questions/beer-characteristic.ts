@@ -1,0 +1,16 @@
+export const beerCharacteristics = [
+    {value: 'cloudiness'},
+    {value: 'buttery'},
+    {value: 'low head retention'},
+    {value: 'astringency'},
+    {value: 'phenolic'},
+    {value: 'light body'},
+    {value: 'fruitiness'},
+    {value: 'sourness'},
+    {value: 'cooked corn'},
+    {value: 'bitterness'},
+    {value: 'cardboard'},
+    {value: 'sherry-like'},
+    {value: 'acetaldehyde'},
+    {value: 'alcoholic'},   
+]
