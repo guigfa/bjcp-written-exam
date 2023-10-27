@@ -1,6 +1,23 @@
 <app-tool-bar></app-tool-bar>
-<p>full-test works!</p>
 
-<button (click)="generatePDF()">
-    aaa
-</button>
+<div class="container">
+    <div class="main-buttons">
+        <button mat-stroked-button (click)="blur()" [disabled]="!blured" class="blur-button"><mat-icon>remove_red_eye</mat-icon>
+            {{ !blured ? "Prova liberada" : "Liberar Prova" }}
+        </button>
+        <span *ngIf="blured" style="margin-top: 20px">Após liberar a prova, o botão fica desabilitado!</span>
+
+        <div class="full-test" [ngClass]="getBlur()">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iste in accusamus animi. Beatae nulla et laborum? Quos laboriosam obcaecati doloribus explicabo aut et eveniet rerum nisi ipsum! Deserunt, id.
+        </div>
+
+    </div>
+    <div class="df-buttons">
+        <button mat-raised-button color="primary" (click)="generatePDF()">
+            Gerar PDF
+        </button>
+        <button (click)="back()" mat-stroked-button color="warn">Voltar</button>
+    </div>
+</div>
+
+

@@ -1,0 +1,31 @@
+.container {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 1536px;
+}
+
+.blur {
+    filter: blur(6px)
+}
+
+.main-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.df-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.blur-button {
+    width: 240px; 
+    padding: 20px; 
+    margin-bottom: 20px;
+}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { beerCharacteristics } from 'src/shared/material/questions/beer-characteristic';
 import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
@@ -13,7 +14,9 @@ const pdfMake = require('pdfmake/build/pdfmake.js');
   templateUrl: './full-test.component.html',
   styleUrls: ['./full-test.component.css']
 })
-export class FullTestComponent {
+export class FullTestComponent implements OnInit {
+  blured: boolean = true;
+
   QS0 = S0;
   QS14 = S14;
   QS1 = S1;
@@ -60,7 +63,13 @@ export class FullTestComponent {
 
   recipeQuestions: any = {question: this.QS14, title: this.QS14TITLE, recipe: recipeStyles}
 
-  constructor(){
+  constructor(private router: Router){}
+
+  ngOnInit(): void {
+    this.getRandomQuestions();
+  }
+
+  getRandomQuestions() {
     const randomNumberRecipe = Math.floor(Math.random() * (this.recipeQuestions.recipe.length - 1 ) );
     const possibleCharacteristics: any[] = [];
     while(possibleCharacteristics.length < 3) {
@@ -102,232 +111,229 @@ export class FullTestComponent {
         characteristics: possibleCharacteristics
       }
     }
-
-    console.log(this.recipeQuestion),
-    console.log(this.comparisonQuestion)
-    console.log(this.beerCharacteristicQuestion)
-    console.log(this.proccessAndSuppliesQuestion)
   }
 
-  fetchImage (url: string) {
-    return fetch(url)
-      .then((response) => response.blob())
-      .then(
-        (blob) =>
-          new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(blob);
-          })
-      );
+  blur() {
+    this.blured = !this.blured
   }
-  
 
-  async generatePDF(){
+  getBlur() {
+    if(this.blured) {
+      return 'blur'
+    } else {
+      return ''
+    }
+  }
+
+  back() {
+    this.router.navigate(['']);
+  }
+
+  generatePDF(){
     let date = new Date();
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
 
-var document = {
-	content: [
-		{text: 'BJCP WRITTEN EXAM GENERATOR', style: 'header', alignment: 'center'},
-		{text: `Prova gerada em: ${day}/${month}/${year}`, alignment: 'center'},
+  var document = {
+    content: [
+      {text: 'BJCP WRITTEN EXAM GENERATOR', style: 'header', alignment: 'center'},
+      {text: `Prova gerada em: ${day}/${month}/${year}`, alignment: 'center'},
 
-		{text: 'A prova tem duração de 1h30! - Se programe para conseguir realizar', fontSize: 20, alignment: 'center'},
-		
-		{text: 'QUESTÃO 1', pageBreak: 'before', style: 'subheader', alignment: 'center'},
-		{
-			style: 'tableExample',
-			color: '#444',
-			table: {
-				widths: [200, 'auto'],
-				headerRows: 2,
-				body: [
-					[{text: `${this.comparisonQuestion[0].title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-					[{text: `${this.comparisonQuestion[0].question[0].value}`}, {text: `${this.comparisonQuestion[0].question[0].question}`}],
-					[{text: `${this.comparisonQuestion[0].question[1].value}`}, {text: `${this.comparisonQuestion[0].question[1].question}`}],
-					[{text: `${this.comparisonQuestion[0].question[2].value}`}, {text: `${this.comparisonQuestion[0].question[2].question}`}],
-				]
-			}
-		},
-    {text: `ID:${this.comparisonQuestion[0].comparison.id}`, style: 'tableHeader'},
-    {
-			ul: [
-				{
-					ol: [
-						[
-							{
-								columns: [
-									{text: `${this.comparisonQuestion[0].comparison.style1}`, fontSize: 20},
-									{
-										stack: [
-											{text: `${this.comparisonQuestion[0].comparison.style2}`, fontSize: 20},
-											
-										]
-									},
-									{text:`${this.comparisonQuestion[0].comparison.style3}`, fontSize: 20},
-
-
-                ]
-							},
-						]
-					]
-				},
-			]
-		},
-		{text: 'QUESTÃO 2', pageBreak: 'before', style: 'subheader', alignment: 'center'},
-    {
-			style: 'tableExample',
-			color: '#444',
-			table: {
-				widths: [200, 'auto'],
-				headerRows: 2,
-				body: [
-					[{text: `${this.recipeQuestion.title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-					[{text: `${this.recipeQuestion.question[0].value}`}, {text: `${this.recipeQuestion.question[0].question}`}],
-					[{text: `${this.recipeQuestion.question[1].value}`}, {text: `${this.recipeQuestion.question[1].question}`}],
-					[{text: `${this.recipeQuestion.question[2].value}`}, {text: `${this.recipeQuestion.question[2].question}`}],
-					[{text: `${this.recipeQuestion.question[3].value}`}, {text: `${this.recipeQuestion.question[3].question}`}],
-				]
-			}
-		},
-    {
-			ul: [
-				{
-					ol: [
-						[
-							{
-								columns: [
-									{text: `${this.recipeQuestion.recipe.style}`, fontSize: 20},
-									
-                ]
-							},
-						]
-					]
-				},
-			]
-		},
-		{text: 'QUESTÃO 3', pageBreak: 'before', style: 'subheader', alignment: 'center'},
-    {
-			style: 'tableExample',
-			color: '#444',
-			table: {
-				widths: [200, 'auto'],
-				headerRows: 2,
-				body: [
-					[{text: `${this.comparisonQuestion[1].title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-					[{text: `${this.comparisonQuestion[1].question[0].value}`}, {text: `${this.comparisonQuestion[1].question[0].question}`}],
-					[{text: `${this.comparisonQuestion[1].question[1].value}`}, {text: `${this.comparisonQuestion[1].question[1].question}`}],
-					[{text: `${this.comparisonQuestion[1].question[2].value}`}, {text: `${this.comparisonQuestion[1].question[2].question}`}],
-				]
-			}
-		},
-    {text: `ID:${this.comparisonQuestion[1].comparison.id}`, style: 'tableHeader'},
-    {
-			ul: [
-				{
-					ol: [
-						[
-							{
-								columns: [
-									{text: `${this.comparisonQuestion[1].comparison.style1}`, fontSize: 20},
-									{
-										stack: [
-											{text: `${this.comparisonQuestion[1].comparison.style2}`, fontSize: 20},
-											
-										]
-									},
-									{text:`${this.comparisonQuestion[1].comparison.style3}`, fontSize: 20},
-                ]
-							},
-						]
-					]
-				},
-			]
-		},
-    {text: 'QUESTÃO 4', pageBreak: 'before', style: 'subheader', alignment: 'center'},
-    {
-			style: 'tableExample',
-			color: '#444',
-			table: {
-				widths: [200, 'auto'],
-				headerRows: 3,
-				body: [
-					[{text: `${this.proccessAndSuppliesQuestion.title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-					[{text: `${this.proccessAndSuppliesQuestion.question[0].value}`}, {text: `${this.proccessAndSuppliesQuestion.question[0].question}`}],
-					[{text: `${this.proccessAndSuppliesQuestion.question[1].value}`}, {text: `${this.proccessAndSuppliesQuestion.question[1].question}`}],
-					[{text: `${this.proccessAndSuppliesQuestion.question[2].value}`}, {text: `${this.proccessAndSuppliesQuestion.question[2].question}`}],
-				]
-			}
-		},
-    {text: 'QUESTÃO 5', pageBreak: 'before', style: 'subheader', alignment: 'center'},
-    {
-			style: 'tableExample',
-			color: '#444',
-			table: {
-				widths: [200, 'auto'],
-				headerRows: 2,
-				body: [
-					[{text: `${this.beerCharacteristicQuestion.title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-					[{text: `${this.beerCharacteristicQuestion.question[0].value}`}, {text: `${this.beerCharacteristicQuestion.question[0].question}`}],
-					[{text: `${this.beerCharacteristicQuestion.question[1].value}`}, {text: `${this.beerCharacteristicQuestion.question[1].question}`}],
-					[{text: `${this.beerCharacteristicQuestion.question[2].value}`}, {text: `${this.beerCharacteristicQuestion.question[2].question}`}],
-				]
-			}
-		},
-   
-	],
-	styles: {
-		header: {
-			fontSize: 40,
-			bold: true,
-			margin: [0, 0, 0, 300]
-		},
-		subheader: {
-			fontSize: 16,
-			bold: true,
-			margin: [0, 10, 0, 5]
-		},
-		tableExample: {
-			margin: [0, 5, 0, 15]
-		},
-		tableHeader: {
-			bold: true,
-			fontSize: 13,
-			color: 'black'
-		}
-	},
-	defaultStyle: {
-		// alignment: 'justify'
-	}
-	
-    }
-    if(this.beerCharacteristicQuestion.characteristics?.length) {
-      document.content.push( {
+      {text: 'A prova tem duração de 1h30! - Se programe para conseguir realizar', fontSize: 20, alignment: 'center'},
+      
+      {text: 'QUESTÃO 1', pageBreak: 'before', style: 'subheader', alignment: 'center'},
+      {
+        style: 'tableExample',
+        color: '#444',
+        table: {
+          widths: [200, 'auto'],
+          headerRows: 2,
+          body: [
+            [{text: `${this.comparisonQuestion[0].title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
+            [{text: `${this.comparisonQuestion[0].question[0].value}`}, {text: `${this.comparisonQuestion[0].question[0].question}`}],
+            [{text: `${this.comparisonQuestion[0].question[1].value}`}, {text: `${this.comparisonQuestion[0].question[1].question}`}],
+            [{text: `${this.comparisonQuestion[0].question[2].value}`}, {text: `${this.comparisonQuestion[0].question[2].question}`}],
+          ]
+        }
+      },
+      {text: `ID:${this.comparisonQuestion[0].comparison.id}`, style: 'tableHeader'},
+      {
         ul: [
           {
             ol: [
               [
                 {
                   columns: [
-                    {text: `${this.beerCharacteristicQuestion.characteristics[0].value}`, fontSize: 20},
+                    {text: `${this.comparisonQuestion[0].comparison.style1}`, fontSize: 20},
                     {
                       stack: [
-                        {text: `${this.beerCharacteristicQuestion.characteristics[1].value}`, fontSize: 20},
+                        {text: `${this.comparisonQuestion[0].comparison.style2}`, fontSize: 20},
                         
                       ]
                     },
-                    {text:`${this.beerCharacteristicQuestion.characteristics[2].value}`, fontSize: 20},
+                    {text:`${this.comparisonQuestion[0].comparison.style3}`, fontSize: 20},
+
+
                   ]
                 },
               ]
             ]
           },
         ]
-      },)
+      },
+      {text: 'QUESTÃO 2', style: 'subheader', alignment: 'center'},
+      {
+        style: 'tableExample',
+        color: '#444',
+        table: {
+          widths: [200, 'auto'],
+          headerRows: 2,
+          body: [
+            [{text: `${this.recipeQuestion.title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
+            [{text: `${this.recipeQuestion.question[0].value}`}, {text: `${this.recipeQuestion.question[0].question}`}],
+            [{text: `${this.recipeQuestion.question[1].value}`}, {text: `${this.recipeQuestion.question[1].question}`}],
+            [{text: `${this.recipeQuestion.question[2].value}`}, {text: `${this.recipeQuestion.question[2].question}`}],
+            [{text: `${this.recipeQuestion.question[3].value}`}, {text: `${this.recipeQuestion.question[3].question}`}],
+          ]
+        }
+      },
+      {
+        ul: [
+          {
+            ol: [
+              [
+                {
+                  columns: [
+                    {text: `${this.recipeQuestion.recipe.style}`, fontSize: 20},
+                    
+                  ]
+                },
+              ]
+            ]
+          },
+        ]
+      },
+      {text: 'QUESTÃO 3', pageBreak: 'before', style: 'subheader', alignment: 'center'},
+      {
+        style: 'tableExample',
+        color: '#444',
+        table: {
+          widths: [200, 'auto'],
+          headerRows: 2,
+          body: [
+            [{text: `${this.comparisonQuestion[1].title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
+            [{text: `${this.comparisonQuestion[1].question[0].value}`}, {text: `${this.comparisonQuestion[1].question[0].question}`}],
+            [{text: `${this.comparisonQuestion[1].question[1].value}`}, {text: `${this.comparisonQuestion[1].question[1].question}`}],
+            [{text: `${this.comparisonQuestion[1].question[2].value}`}, {text: `${this.comparisonQuestion[1].question[2].question}`}],
+          ]
+        }
+      },
+      {text: `ID:${this.comparisonQuestion[1].comparison.id}`, style: 'tableHeader'},
+      {
+        ul: [
+          {
+            ol: [
+              [
+                {
+                  columns: [
+                    {text: `${this.comparisonQuestion[1].comparison.style1}`, fontSize: 20},
+                    {
+                      stack: [
+                        {text: `${this.comparisonQuestion[1].comparison.style2}`, fontSize: 20},
+                        
+                      ]
+                    },
+                    {text:`${this.comparisonQuestion[1].comparison.style3}`, fontSize: 20},
+                  ]
+                },
+              ]
+            ]
+          },
+        ]
+      },
+      {text: 'QUESTÃO 4', style: 'subheader', alignment: 'center'},
+      {
+        style: 'tableExample',
+        color: '#444',
+        table: {
+          widths: [200, 'auto'],
+          headerRows: 3,
+          body: [
+            [{text: `${this.proccessAndSuppliesQuestion.title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
+            [{text: `${this.proccessAndSuppliesQuestion.question[0].value}`}, {text: `${this.proccessAndSuppliesQuestion.question[0].question}`}],
+            [{text: `${this.proccessAndSuppliesQuestion.question[1].value}`}, {text: `${this.proccessAndSuppliesQuestion.question[1].question}`}],
+            [{text: `${this.proccessAndSuppliesQuestion.question[2].value}`}, {text: `${this.proccessAndSuppliesQuestion.question[2].question}`}],
+          ]
+        }
+      },
+      {text: 'QUESTÃO 5', style: 'subheader', alignment: 'center'},
+      {
+        style: 'tableExample',
+        color: '#444',
+        table: {
+          widths: [200, 'auto'],
+          headerRows: 2,
+          body: [
+            [{text: `${this.beerCharacteristicQuestion.title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
+            [{text: `${this.beerCharacteristicQuestion.question[0].value}`}, {text: `${this.beerCharacteristicQuestion.question[0].question}`}],
+            [{text: `${this.beerCharacteristicQuestion.question[1].value}`}, {text: `${this.beerCharacteristicQuestion.question[1].question}`}],
+            [{text: `${this.beerCharacteristicQuestion.question[2].value}`}, {text: `${this.beerCharacteristicQuestion.question[2].question}`}],
+          ]
+        }
+      },
+    
+    ],
+    styles: {
+      header: {
+        fontSize: 40,
+        bold: true,
+        margin: [0, 0, 0, 300]
+      },
+      subheader: {
+        fontSize: 20,
+        bold: true,
+        color: 'blue',
+        margin: [20, 10, 0, 5]
+      },
+      tableExample: {
+        margin: [0, 5, 0, 15]
+      },
+      tableHeader: {
+        bold: true,
+        fontSize: 13,
+        color: 'black'
+      }
+    },
+    defaultStyle: {
+      // alignment: 'justify'
     }
+    
+      }
+      if(this.beerCharacteristicQuestion.characteristics?.length) {
+        document.content.push( {
+          ul: [
+            {
+              ol: [
+                [
+                  {
+                    columns: [
+                      {text: `${this.beerCharacteristicQuestion.characteristics[0].value}`, fontSize: 20},
+                      {
+                        stack: [
+                          {text: `${this.beerCharacteristicQuestion.characteristics[1].value}`, fontSize: 20},
+                          
+                        ]
+                      },
+                      {text:`${this.beerCharacteristicQuestion.characteristics[2].value}`, fontSize: 20},
+                    ]
+                  },
+                ]
+              ]
+            },
+          ]
+        },)
+      }
 
     pdfMake.createPdf(document).download('teste.pdf');
   }
