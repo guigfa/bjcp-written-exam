@@ -14,4 +14,8 @@ export class ToolBarComponent {
     this.router.navigate([''])
   }
 
+  goToStudyGuide() {
+    this.router.navigate(['/guia-de-estudos'])
+  }
+
 }

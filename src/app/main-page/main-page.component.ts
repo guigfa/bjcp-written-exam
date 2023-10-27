@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class MainPageComponent implements OnInit, OnDestroy {
 
-  acertos: number = Number(localStorage.getItem("TOTAL_ACERTOS"));
-  tentativasTotais: number = Number(localStorage.getItem("TOTAL_TENTATIVAS"));
+  hits: number = Number(localStorage.getItem("TOTAL_ACERTOS"));
+  allQuestions: number = Number(localStorage.getItem("TOTAL_TENTATIVAS"));
   deployedTest: number = 0;
   finishedTest: number = 0;
   detailedTries: any[] = []
@@ -26,8 +26,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
       hits: Number(localStorage.getItem("ACERTOS")),
       total: Number(localStorage.getItem("TENTATIVAS"))
     })
-    Number(localStorage.getItem("ACERTOS")) ? this.acertos += Number(localStorage.getItem("ACERTOS")) : ''
-    Number(localStorage.getItem("TENTATIVAS")) ? this.tentativasTotais += Number(localStorage.getItem("TENTATIVAS")) : ''
+    Number(localStorage.getItem("ACERTOS")) ? this.hits += Number(localStorage.getItem("ACERTOS")) : ''
+    Number(localStorage.getItem("TENTATIVAS")) ? this.allQuestions += Number(localStorage.getItem("TENTATIVAS")) : ''
+    localStorage.clear();
 
   }
 
@@ -44,20 +45,20 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   generateFullTest() {
-    
+    this.router.navigate(['questoes/prova-completa'])
   }
 
   cleanResults() {
     localStorage.clear();
-    this.acertos = 0;
-    this.tentativasTotais = 0;
+    this.hits = 0;
+    this.allQuestions = 0;
     console.log(Number(localStorage.getItem("ACERTOS")))
     console.log(Number(localStorage.getItem("TENTATIVAS")))
   }
 
   ngOnDestroy(): void {
     localStorage.setItem("TOTAL_DETALHADO", JSON.stringify(this.detailedTries))
-    localStorage.setItem("TOTAL_ACERTOS", this.acertos.toString());
-    localStorage.setItem("TOTAL_TENTATIVAS", this.tentativasTotais.toString())
+    localStorage.setItem("TOTAL_ACERTOS", this.hits.toString());
+    localStorage.setItem("TOTAL_TENTATIVAS", this.allQuestions.toString())
   }
 }

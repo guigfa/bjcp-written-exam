@@ -5,7 +5,7 @@
     <mat-card class="card-class">
         <h1 class="title">Bem vindo ao seu estudo do BJCP Written!</h1>
         <div class="card-titles">
-            <span>Você já acertou {{ acertos }} de {{ tentativasTotais }}!</span>
+            <span>Você já acertou {{ hits }} de {{ allQuestions }}!</span>
             <span>Você já gerou {{ deployedTest }} provas!</span>
             <span>E já finalizou um total de {{ finishedTest }}!</span>
         </div>
@@ -13,13 +13,13 @@
             <button mat-raised-button color="warn" class="button-clean" (click)="cleanResults()">Limpar registro</button>
         </div>
         <div class="main-buttons">
-            <button mat-raised-button class="question-buttons" color="primary" (click)="generateTrueOrFalse()">Gerar Lista de Verdadeiro ou Falso</button>
-            <button mat-raised-button class="question-buttons" color="primary" (click)="generateTest()">Gerar Comparação de Estilos</button>
-            <button mat-raised-button class="question-buttons" color="primary" (click)="generateMaterialsAndProccessTest()">Gerar Questão de Insumos e Processo</button>
+            <button mat-stroked-button class="question-buttons" color="primary" (click)="generateTrueOrFalse()">Gerar Lista de Verdadeiro ou Falso</button>
+            <button mat-stroked-button class="question-buttons" color="primary" (click)="generateTest()">Gerar Comparação de Estilos</button>
+            <button mat-stroked-button class="question-buttons" color="primary" (click)="generateMaterialsAndProccessTest()">Gerar Questão de Insumos e Processo</button>
         </div>
     </mat-card>
     <div style="display: flex; justify-content: center; margin-top: 30px">
-        <button mat-stroked-button (click)="generateFullTest()" style="padding: 50px">Gerar Prova Completa!</button>
+        <button mat-raised-button color="primary" (click)="generateFullTest()" style="padding: 50px">Gerar Prova Completa!</button>
     </div>
     
 </main>

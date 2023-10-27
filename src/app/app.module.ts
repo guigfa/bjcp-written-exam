@@ -13,6 +13,8 @@ import { ToolBarComponent } from './toolbar/toolbar/toolbar.component';
 import { StyleComparison } from './questions/discursivas/style-comparison/style-comparison.component';
 import { ProccessAndSuppliesComponent } from './questions/discursivas/proccess-and-supplies/proccess-and-supplies.component';
 import { TrueOrFalseComponent } from './questions/true-or-false/true-or-false.component';
+import { FullTestComponent } from './questions/full-test/full-test.component';
+import { StudyGuideComponent } from './study-guide/study-guide.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { TrueOrFalseComponent } from './questions/true-or-false/true-or-false.co
     ToolBarComponent,
     TrueOrFalseComponent,
     StyleComparison,
-    ProccessAndSuppliesComponent
+    ProccessAndSuppliesComponent,
+    FullTestComponent,
+    StudyGuideComponent,
   ],
   imports: [
     BrowserAnimationsModule,

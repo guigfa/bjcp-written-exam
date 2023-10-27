@@ -1,5 +1,5 @@
 :root {
-    font-family: 'Graphie', 'sans-serif';
+    font-family: 'Montserrat', sans-serif;
 }
 
 main {
@@ -47,7 +47,9 @@ mat-card {
 }
 
 .title {
+    outline-color: black;
     padding: 30px 0px;
+    font-weight: 500;
 }
 
 .main-buttons {

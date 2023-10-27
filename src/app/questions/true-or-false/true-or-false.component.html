@@ -41,7 +41,7 @@
             
             <span style="font-size:32px;">Parabéns, você acertou {{ count }}/{{questionsToDisplay.length}}</span>
             <hr>
-            <mat-table [dataSource]="wrongQuestions" *ngIf="result" class="margin-table">
+            <mat-table [dataSource]="wrongQuestions" *ngIf="result && wrongQuestions.length" class="margin-table">
                 
                 <ng-container matColumnDef="value">
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; width: 150px;">Resposta Correta</th>

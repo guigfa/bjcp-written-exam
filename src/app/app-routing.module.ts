@@ -8,7 +8,10 @@ const routes: Routes = [
   },
   { path: 'questoes',
   loadChildren: () => import('./questions/questions.routing').then(m => m.QuestionsRoutingModule)
-
+  },
+  {
+    path: 'guia-de-estudos',
+    loadChildren: () => import('./study-guide/study-guide.routing').then(m => m.StudyGuideRouting)
   }
 ];
 
