@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StudyGuideComponent } from './study-guide.component';
+import { StudyProccessComponent } from './study-proccess/study-proccess.component';
+import { StudySuppliesComponent } from './study-supplies/study-supplies.component';
+import { FormulasAndUtilsComponent } from './formulas-and-utils/formulas-and-utils.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'guia-de-estudos', pathMatch: 'full' },
   {
-    path: 'guia-de-estudos',
-    component: StudyGuideComponent
+    path: 'processos',
+    component: StudyProccessComponent
+  },
+  {
+    path: 'insumos',
+    component: StudySuppliesComponent
+  },
+  {
+    path: 'formulas',
+    component: FormulasAndUtilsComponent
   }
 ];
 

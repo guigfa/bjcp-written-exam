@@ -14,7 +14,9 @@ import { StyleComparison } from './questions/discursivas/style-comparison/style-
 import { ProccessAndSuppliesComponent } from './questions/discursivas/proccess-and-supplies/proccess-and-supplies.component';
 import { TrueOrFalseComponent } from './questions/true-or-false/true-or-false.component';
 import { FullTestComponent } from './questions/full-test/full-test.component';
-import { StudyGuideComponent } from './study-guide/study-guide.component';
+import { StudyProccessComponent } from './study-guide/study-proccess/study-proccess.component';
+import { StudySuppliesComponent } from './study-guide/study-supplies/study-supplies.component';
+import { FormulasAndUtilsComponent } from './study-guide/formulas-and-utils/formulas-and-utils.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { StudyGuideComponent } from './study-guide/study-guide.component';
     StyleComparison,
     ProccessAndSuppliesComponent,
     FullTestComponent,
-    StudyGuideComponent,
+    StudyProccessComponent,
+    StudySuppliesComponent,
+    FormulasAndUtilsComponent
   ],
   imports: [
     BrowserAnimationsModule,

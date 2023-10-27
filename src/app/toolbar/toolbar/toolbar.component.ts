@@ -14,8 +14,15 @@ export class ToolBarComponent {
     this.router.navigate([''])
   }
 
-  goToStudyGuide() {
-    this.router.navigate(['/guia-de-estudos'])
+  goToProccessStudyGuide() {
+    this.router.navigate(['/guia-de-estudos/processos'])
   }
 
+  goToSuppliesStudyGuide() {
+    this.router.navigate(['/guia-de-estudos/insumos'])
+  }
+
+  goToFormulasStudyGuide(){
+    this.router.navigate(['/guia-de-estudos/formulas'])
+  }
 }
