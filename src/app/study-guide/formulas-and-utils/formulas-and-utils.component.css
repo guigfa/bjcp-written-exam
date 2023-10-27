@@ -1,0 +1,93 @@
+* {
+    overflow-x: hidden;
+}
+
+.container {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+span {
+    height: fit-content;
+    background-color: white;
+}
+
+.card-class {
+    margin: 20px 0;
+    width: 800px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #F2F2F2;
+    border-radius: 8px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.title {
+    justify-self: flex-start;
+    outline-color: black;
+    padding: 30px 0px;
+    font-weight: 500;
+    background-color: white;
+}
+
+.title-card {
+    font-weight: 700;
+    margin-top: 8px;
+    font-size: 20px;
+    overflow-y: hidden;
+    padding: 4px 0;
+}
+
+.accordion {
+    width: 100%;
+    background-color: white;
+}
+
+
+.additionals-title {
+    background-color: white;
+}
+
+.formulas-title {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 24px;
+}
+
+.formula {
+    font-weight: 700; 
+    text-align: center; 
+    background-color: white;
+    border: 2px solid #F2F2F2;
+    margin: 12px 0;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.line-separator {
+    height: 1px; 
+    background-color: black; 
+    width: 100%; 
+    margin-top: 12px;
+}
+
+strong {
+    background-color: white;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+  }
+  
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+  }
+  .mat-expansion-panel-content:not(.mat-expanded) {
+    height: 0px !important;
+    visibility: visible !important;
+    padding: 0px !important;
+  }
