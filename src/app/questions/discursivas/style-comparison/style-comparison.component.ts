@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
-import { S0, S0TITLE } from 'src/shared/material/questions/questions';
+import { S0, S0TITLE } from 'src/shared/material/questions/questionsMock';
 
 @Component({
   selector: 'app-style-comparison',
@@ -36,12 +36,11 @@ export class StyleComparison implements OnInit {
   }
 
   getIdsOfComparisons() {
-    while(this.randomNumbers.length < this.count) this.randomNumbers.push(Math.floor(Math.random() * (91 - 1 + 1) + 1)) 
+    while(this.randomNumbers.length < this.count) this.randomNumbers.push(Math.floor(Math.random() * (this.stylesToCompare.length))) 
     this.randomNumbers.sort((a, b) => a - b)
 
     this.randomNumbers.forEach(number => {
-      if(!this.stylesToCompare.find(style => style.id === number)) this.getIdsOfComparisons();
-      this.filteredStyles.push(this.stylesToCompare.find(style => style.id === number));
+      this.filteredStyles.push(this.stylesToCompare[number]);
   })}
 
   back(){

@@ -5,7 +5,7 @@ import { StyleComparison } from './discursivas/style-comparison/style-comparison
 import { ProccessAndSuppliesComponent } from './discursivas/proccess-and-supplies/proccess-and-supplies.component';
 import { FullTestComponent } from './full-test/full-test.component';
 const routes: Routes = [
-  { path: '', redirectTo: 'verdadeiro-ou-falso', pathMatch: 'full' }, // Redireciona a raiz para 'verdadeiro-ou-falso'
+  { path: '', redirectTo: 'verdadeiro-ou-falso', pathMatch: 'full' }, 
   {
     path: 'verdadeiro-ou-falso',
     component: TrueOrFalseComponent,

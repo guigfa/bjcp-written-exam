@@ -28,15 +28,20 @@ export class MainPageComponent implements OnInit, OnDestroy {
     })
     Number(localStorage.getItem("ACERTOS")) ? this.hits += Number(localStorage.getItem("ACERTOS")) : ''
     Number(localStorage.getItem("TENTATIVAS")) ? this.allQuestions += Number(localStorage.getItem("TENTATIVAS")) : ''
+    let jsonString = localStorage.getItem("TOTAL_DETALHADO");
+    let formatted: any = jsonString?.replace(/\\"/g, '"');
+
+    jsonString = formatted.substring(1, formatted.length - 1);
+    console.log(JSON.parse(jsonString))
     localStorage.clear();
 
   }
 
-  generateTest() {
+  generateComparisonTest() {
     this.router.navigate(['/questoes/discursivas/comparacao'])
   }
 
-  generateTrueOrFalse() {
+  generateTrueOrFalseTest() {
     this.router.navigate(['/questoes'])
   }
 
@@ -58,6 +63,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     localStorage.setItem("TOTAL_DETALHADO", JSON.stringify(this.detailedTries))
+    console.log(localStorage.getItem("TOTAL_DETALHADO"))
     localStorage.setItem("TOTAL_ACERTOS", this.hits.toString());
     localStorage.setItem("TOTAL_TENTATIVAS", this.allQuestions.toString())
   }

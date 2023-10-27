@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { trueOrFalseMock } from 'src/shared/material/questions/true-or-false';
+import { trueOrFalseMockEN, trueOrFalseMockPT } from 'src/shared/material/questions/true-or-false';
 
 @Component({
   selector: 'app-true-or-false',
@@ -11,7 +11,9 @@ import { trueOrFalseMock } from 'src/shared/material/questions/true-or-false';
 export class TrueOrFalseComponent implements OnInit {
 
 
-  trueOrFalse: any[] = trueOrFalseMock.questions;
+  trueOrFalsePT: any[] = trueOrFalseMockPT.questions;
+  trueOrFalseEN: any[] = trueOrFalseMockEN.questions;
+  trueOrFalse: any[] = [];
   count: number = 0;
   questionsColumns: string[] = [
     'value',
@@ -19,6 +21,8 @@ export class TrueOrFalseComponent implements OnInit {
   ]
   randomNumbers: number[] = [];
   controllerList: any[] = [];
+  questionsToDisplayPT: any[] = [];
+  questionsToDisplayEN: any[] = [];
   questionsToDisplay: any[] = [];
   questionsToCompare: any[] = [];
   wrongQuestions: any[] = [];
@@ -46,13 +50,15 @@ export class TrueOrFalseComponent implements OnInit {
     this.randomNumbers.sort((a, b) => a - b)
     
     this.randomNumbers.forEach(number => {
-      this.questionsToDisplay.push(this.trueOrFalse.find(question => question.id === number))
+      this.questionsToDisplayPT.push(this.trueOrFalsePT.find(question => question.id === number))
+      this.questionsToDisplayEN.push(this.trueOrFalseEN.find(question => question.id === number))
     })
-    this.questionsToCompare = [...this.questionsToDisplay]
+    this.questionsToCompare = [...this.questionsToDisplayPT]
+    this.questionsToDisplay = this.questionsToDisplayPT;
     this.wrongQuestions = this.questionsToCompare;
   }
 
-  changeQuestions(event: any, id: number) {
+  changeAnswers(event: any, id: number) {
     let question = this.questionsToCompare.find(question => question.id === id);
 
     if(event.value === question.value){
@@ -69,6 +75,10 @@ export class TrueOrFalseComponent implements OnInit {
     } 
   }
 
+  getToggleValue(ev: any) {
+    this.questionsToDisplay = ev.value === "PT" ? this.questionsToDisplayPT : this.questionsToDisplayEN 
+  }
+
   checkAnswer(){
     let date = new Date();
     let day = date.getDate();
@@ -78,14 +88,13 @@ export class TrueOrFalseComponent implements OnInit {
 
     localStorage.setItem("DATA", JSON.stringify(`${day}/${month}/${year}`))
     localStorage.setItem("ACERTOS", this.count.toString());
-    localStorage.setItem("TENTATIVAS", this.questionsToDisplay.length.toString())
-    console.log(this.questionsToDisplay.length)
+    localStorage.setItem("TENTATIVAS", this.questionsToDisplayPT.length.toString())
   } 
 
   backToTable(){
     this.randomNumbers = [];
     this.count = 0;
-    this.questionsToDisplay = [];
+    this.questionsToDisplayPT = [];
     this.result = false;
     this.generateQuestions();
   }

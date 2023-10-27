@@ -17,6 +17,7 @@ import { FullTestComponent } from './questions/full-test/full-test.component';
 import { StudyProccessComponent } from './study-guide/study-proccess/study-proccess.component';
 import { StudySuppliesComponent } from './study-guide/study-supplies/study-supplies.component';
 import { FormulasAndUtilsComponent } from './study-guide/formulas-and-utils/formulas-and-utils.component';
+import { StudyGuideComponent } from './study-guide/study-guide.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormulasAndUtilsComponent } from './study-guide/formulas-and-utils/form
     FullTestComponent,
     StudyProccessComponent,
     StudySuppliesComponent,
-    FormulasAndUtilsComponent
+    FormulasAndUtilsComponent,
+    StudyGuideComponent
   ],
   imports: [
     BrowserAnimationsModule,
