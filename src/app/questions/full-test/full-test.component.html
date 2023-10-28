@@ -1,7 +1,7 @@
 <app-tool-bar></app-tool-bar>
 <div class="container">
     <form [formGroup]="toggleForm">
-        <mat-button-toggle-group class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
+        <mat-button-toggle-group [disabled]="!blured" class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
             <mat-button-toggle value="PT">PT</mat-button-toggle>
             <mat-button-toggle value="EN">EN</mat-button-toggle>
     
@@ -11,7 +11,20 @@
         <button mat-stroked-button (click)="blur()" [disabled]="!blured" class="blur-button"><mat-icon>remove_red_eye</mat-icon>
             {{ !blured ? "Prova liberada" : "Liberar Prova" }}
         </button>
-        <span *ngIf="blured" style="margin-top: 20px">Após liberar a prova, o botão fica desabilitado!</span>
+        <span *ngIf="blured && language ==='PT'" style="margin-top: 20px">
+            Você pode escolher a linguagem da prova para gerar o PDF/realizar pela aplicação
+        </span>
+        <span *ngIf="blured && language ==='PT'">
+            Após liberar a prova, os botões de linguagem e liberação ficarão desabilitados!
+        </span>
+
+        <span *ngIf="blured  && language ==='EN'" style="margin-top: 20px">
+            You can choose the test language to release the PDF/do the test by the aplication
+        </span>
+        <span *ngIf="blured && language ==='EN'">
+            After unblur the test, the language and release buttons will be disabled!
+        </span>
+
 
         <div class="full-test" [ngClass]="getBlur()">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iste in accusamus animi. Beatae nulla et laborum? Quos laboriosam obcaecati doloribus explicabo aut et eveniet rerum nisi ipsum! Deserunt, id.

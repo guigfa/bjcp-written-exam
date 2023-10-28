@@ -60,7 +60,7 @@ export class FullTestComponent implements OnInit {
 
   PORTUGUESE_QUESTIONS = {
     characteristicsQuestions:  [
-      {question: this.PORTUGUESE.QS1, title: this.PORTUGUESE.QS1TITLE, characteristcs: beerCharacteristicsEN},
+      {question: this.PORTUGUESE.QS1, title: this.PORTUGUESE.QS1TITLE, characteristcs: beerCharacteristicsPT},
       {question: this.PORTUGUESE.QS3, title: this.PORTUGUESE.QS3TITLE},
     ],
     proccessAndSuppliesQuestions:  [
@@ -78,7 +78,6 @@ export class FullTestComponent implements OnInit {
   constructor(private router: Router){}
 
   ngOnInit(): void {
-    console.log(PORTUGUESEQUESTIONS)
     this.getRandomQuestions();
   }
 
@@ -176,7 +175,6 @@ export class FullTestComponent implements OnInit {
       this.beerCharacteristicQuestion = this.beerCharacteristicQuestionPT;
       this.proccessAndSuppliesQuestion = this.proccessAndSuppliesQuestionPT;
     }
-    console.log(this.recipeQuestion)
   }
 
   blur() {
@@ -193,7 +191,6 @@ export class FullTestComponent implements OnInit {
 
   getToggleValue(event: any) {
     this.language = event.value;
-    console.log(this.language)
     this.handleLanguage();
   }
 

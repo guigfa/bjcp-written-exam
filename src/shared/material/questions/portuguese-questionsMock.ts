@@ -5,7 +5,7 @@ export const S0PT = [
     },
     {
     value: '40%',
-    question: 'Compare e contraste os três estilos baseados em seus aspectos como ingrediente características(ex: aroma, aparência, sabor, sensação na boca e estatísticas vitais) characteristics (e.g., aroma, appearance, flavor, mouthfeel, vital statistics, etc.), and background information (e.g., history, brewing processes, fermentation techniques, serving methods, etc.) that distinguish each style. '
+    question: 'Compare e contraste os três estilos baseados em seus aspectos como ingredientes, características(ex: aroma, aparência, sabor, sensação na boca e estatísticas vitais, etc.) e informações adicionais(ex: história, processo produtivo, técnicas de fermentação, métodos de serviço, etc.) que diferencia cada estilo. '
     },
     {
     value: '10%',
