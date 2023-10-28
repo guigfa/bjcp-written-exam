@@ -1,10 +1,12 @@
 <app-tool-bar></app-tool-bar>  
     <main>
-        <mat-button-toggle-group class="radio-group" (change)="getToggleValue($event)">
-            <mat-button-toggle value="PT">PT</mat-button-toggle>
-            <mat-button-toggle value="EN">EN</mat-button-toggle>
-    
-        </mat-button-toggle-group>
+        <form [formGroup]="toggleForm">
+            <mat-button-toggle-group class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
+                <mat-button-toggle value="PT">PT</mat-button-toggle>
+                <mat-button-toggle value="EN">EN</mat-button-toggle>
+        
+            </mat-button-toggle-group>
+        </form>
         <div [formGroup]="form">
             <mat-table [dataSource]="questionsToDisplay" *ngIf="!result" class="margin-table">
                 

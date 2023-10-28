@@ -1,4 +1,4 @@
-export const beerCharacteristics = [
+export const beerCharacteristicsEN = [
     {value: 'cloudiness'},
     {value: 'buttery'},
     {value: 'low head retention'},

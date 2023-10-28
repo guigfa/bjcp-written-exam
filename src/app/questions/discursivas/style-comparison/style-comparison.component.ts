@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
-import { S0, S0TITLE } from 'src/shared/material/questions/questionsMock';
+import { S0, S0TITLE } from 'src/shared/material/questions/english-questionsMock';
 
 @Component({
   selector: 'app-style-comparison',

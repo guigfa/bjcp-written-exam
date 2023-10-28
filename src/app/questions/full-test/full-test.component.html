@@ -1,6 +1,12 @@
 <app-tool-bar></app-tool-bar>
-
 <div class="container">
+    <form [formGroup]="toggleForm">
+        <mat-button-toggle-group class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
+            <mat-button-toggle value="PT">PT</mat-button-toggle>
+            <mat-button-toggle value="EN">EN</mat-button-toggle>
+    
+        </mat-button-toggle-group>
+    </form>
     <div class="main-buttons">
         <button mat-stroked-button (click)="blur()" [disabled]="!blured" class="blur-button"><mat-icon>remove_red_eye</mat-icon>
             {{ !blured ? "Prova liberada" : "Liberar Prova" }}

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
-import { beerCharacteristics } from 'src/shared/material/questions/beer-characteristic';
+import { ENGLISHQUESTIONS, PORTUGUESEQUESTIONS } from 'src/shared/material/mocks/questions-per-language';
+import { beerCharacteristicsEN } from 'src/shared/material/questions/english-beer-characteristic';
 import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
-import { S0, S0TITLE, S1, S11, S11TITLE, S13, S13TITLE, S14, S14TITLE, S15, S15TITLE, S1TITLE, S3, S3TITLE, S4, S4TITLE, S8, S8TITLE, S9, S9TITLE } from 'src/shared/material/questions/questionsMock';
 import { recipeStyles } from 'src/shared/material/questions/recipe-styles';
+import { beerCharacteristicsPT } from 'src/shared/material/questions/portuguese-beer-characteristic';
 
 const pdfMake = require('pdfmake/build/pdfmake.js');
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
@@ -16,106 +18,165 @@ const pdfMake = require('pdfmake/build/pdfmake.js');
 })
 export class FullTestComponent implements OnInit {
   blured: boolean = true;
-
-  QS0 = S0;
-  QS14 = S14;
-  QS1 = S1;
-  QS3 = S3;
-  QS4 = S4;
-  QS8 = S8;
-  QS15 = S15;
-  QS9 = S9;
-  QS11 = S11;
-  QS13 = S13;
-  QS0TITLE = S0TITLE;
-  QS14TITLE = S14TITLE;
-  QS1TITLE = S1TITLE;
-  QS3TITLE = S3TITLE;
-  QS4TITLE = S4TITLE;
-  QS8TITLE = S8TITLE;
-  QS15TITLE = S15TITLE;
-  QS9TITLE = S9TITLE;
-  QS11TITLE = S11TITLE;
-  QS13TITLE = S13TITLE;
+  toggleForm: FormGroup = new FormGroup({
+    toggle: new FormControl("PT", Validators.required)
+  })
+  ENGLISH = ENGLISHQUESTIONS;
+  PORTUGUESE = PORTUGUESEQUESTIONS;
+  language: string = "PT";
 
   beerCharacteristicQuestion: any;
   proccessAndSuppliesQuestion: any;
   recipeQuestion: any;
   comparisonQuestion: any[] = [];
-  characteristicsQuestions: any[] = [
-    {question: this.QS1, title: this.QS1TITLE, characteristcs: beerCharacteristics},
-    {question: this.QS3, title: this.QS3TITLE},
-  ]
-  proccessAndSuppliesQuestions: any[] = [
-    {question: this.QS9, title: this.QS9TITLE},
-    {question: this.QS11, title: this.QS11TITLE},
-    {question: this.QS13, title: this.QS13TITLE},
-    {question: this.QS15, title: this.QS15TITLE},
-    {question: this.QS8, title: this.QS8TITLE},
-    {question: this.QS4, title: this.QS4TITLE},
-  ]
-  comparisonQuestions: any = {question: this.QS0, title: this.QS0TITLE, comparison: beerDataComparison}
-  recipeQuestions: any = {question: this.QS14, title: this.QS14TITLE, recipe: recipeStyles}
+  
+  beerCharacteristicQuestionEN: any;
+  proccessAndSuppliesQuestionEN: any;
+  recipeQuestionEN: any;
+  comparisonQuestionEN: any[] = [];
 
+  beerCharacteristicQuestionPT: any;
+  proccessAndSuppliesQuestionPT: any;
+  recipeQuestionPT: any;
+  comparisonQuestionPT: any[] = [];
+  
+  ENGLISH_QUESTIONS = {
+    characteristicsQuestions:  [
+      {question: this.ENGLISH.QS1, title: this.ENGLISH.QS1TITLE, characteristcs: beerCharacteristicsEN},
+      {question: this.ENGLISH.QS3, title: this.ENGLISH.QS3TITLE},
+    ],
+    proccessAndSuppliesQuestions:  [
+      {question: this.ENGLISH.QS9, title: this.ENGLISH.QS9TITLE},
+      {question: this.ENGLISH.QS11, title: this.ENGLISH.QS11TITLE},
+      {question: this.ENGLISH.QS13, title: this.ENGLISH.QS13TITLE},
+      {question: this.ENGLISH.QS15, title: this.ENGLISH.QS15TITLE},
+      {question: this.ENGLISH.QS8, title: this.ENGLISH.QS8TITLE},
+      {question: this.ENGLISH.QS4, title: this.ENGLISH.QS4TITLE},
+    ],
+    comparisonQuestions: {question: this.ENGLISH.QS0, title: this.ENGLISH.QS0TITLE, comparison: beerDataComparison},
+    recipeQuestions: {question: this.ENGLISH.QS14, title: this.ENGLISH.QS14TITLE, recipe: recipeStyles}
+
+  }
+
+  PORTUGUESE_QUESTIONS = {
+    characteristicsQuestions:  [
+      {question: this.PORTUGUESE.QS1, title: this.PORTUGUESE.QS1TITLE, characteristcs: beerCharacteristicsEN},
+      {question: this.PORTUGUESE.QS3, title: this.PORTUGUESE.QS3TITLE},
+    ],
+    proccessAndSuppliesQuestions:  [
+      {question: this.PORTUGUESE.QS9, title: this.PORTUGUESE.QS9TITLE},
+      {question: this.PORTUGUESE.QS11, title: this.PORTUGUESE.QS11TITLE},
+      {question: this.PORTUGUESE.QS13, title: this.PORTUGUESE.QS13TITLE},
+      {question: this.PORTUGUESE.QS15, title: this.PORTUGUESE.QS15TITLE},
+      {question: this.PORTUGUESE.QS8, title: this.PORTUGUESE.QS8TITLE},
+      {question: this.PORTUGUESE.QS4, title: this.PORTUGUESE.QS4TITLE},
+    ],
+    comparisonQuestions: {question: this.PORTUGUESE.QS0, title: this.PORTUGUESE.QS0TITLE, comparison: beerDataComparison},
+    recipeQuestions: {question: this.PORTUGUESE.QS14, title: this.PORTUGUESE.QS14TITLE, recipe: recipeStyles}
+  }
+  
   constructor(private router: Router){}
 
   ngOnInit(): void {
+    console.log(PORTUGUESEQUESTIONS)
     this.getRandomQuestions();
   }
 
   getRandomQuestions() {
-    const randomNumberRecipe = Math.floor(Math.random() * (this.recipeQuestions.recipe.length - 1));
-    const possibleCharacteristics: any[] = [];
+    const randomNumberRecipe = Math.floor(Math.random() * (this.ENGLISH_QUESTIONS.recipeQuestions.recipe.length - 1));
+    const possibleCharacteristicsEN: any[] = [];
+    const possibleCharacteristicsPT: any[] = [];
     const usedIndexes: number[] = [];
     const usedComparsions: number[] = []
 
-    while (possibleCharacteristics.length < 3) {
+    while (possibleCharacteristicsEN.length < 3) {
       let number;
       do {
-        number = Math.floor(Math.random() * (beerCharacteristics.length - 1));
+        number = Math.floor(Math.random() * (beerCharacteristicsEN.length - 1));
       } while (usedIndexes.includes(number));
-
-      possibleCharacteristics.push(beerCharacteristics[number]);
+      possibleCharacteristicsPT.push(beerCharacteristicsPT[number]);
+      possibleCharacteristicsEN.push(beerCharacteristicsEN[number]);
       usedIndexes.push(number);
     }
 
-    this.recipeQuestion = {
-      question: this.recipeQuestions.question,
-      title: this.recipeQuestions.title,
-      recipe: this.recipeQuestions.recipe[randomNumberRecipe]
+    this.recipeQuestionEN = {
+      question: this.ENGLISH_QUESTIONS.recipeQuestions.question,
+      title: this.ENGLISH_QUESTIONS.recipeQuestions.title,
+      recipe: this.ENGLISH_QUESTIONS.recipeQuestions.recipe[randomNumberRecipe]
     }
 
-    while(this.comparisonQuestion.length < 2) {
+    this.recipeQuestionPT = {
+      question: this.PORTUGUESE_QUESTIONS.recipeQuestions.question,
+      title: this.PORTUGUESE_QUESTIONS.recipeQuestions.title,
+      recipe: this.PORTUGUESE_QUESTIONS.recipeQuestions.recipe[randomNumberRecipe]
+    }
+
+    while(this.comparisonQuestionEN.length < 2) {
       let number;
       do {
-       number = Math.floor(Math.random() * (this.comparisonQuestions.comparison.length - 1 ) );
+       number = Math.floor(Math.random() * (this.ENGLISH_QUESTIONS.comparisonQuestions.comparison.length - 1 ) );
       } while (usedComparsions.includes(number))
-      this.comparisonQuestion.push({
-        question: this.QS0,
-        title: this.QS0TITLE,
-        comparison: this.comparisonQuestions.comparison[number]
+      this.comparisonQuestionEN.push({
+        question: this.ENGLISH.QS0,
+        title: this.ENGLISH.QS0TITLE,
+        comparison: this.ENGLISH_QUESTIONS.comparisonQuestions.comparison[number]
+      })
+      this.comparisonQuestionPT.push({
+        question: this.PORTUGUESE.QS0,
+        title: this.PORTUGUESE.QS0TITLE,
+        comparison: this.PORTUGUESE_QUESTIONS.comparisonQuestions.comparison[number]
       })
     }
     
-    const randomNumberSupplies: number = Math.floor(Math.random() * (this.proccessAndSuppliesQuestions.length));
-    this.proccessAndSuppliesQuestion = {
-      question: this.proccessAndSuppliesQuestions[randomNumberSupplies].question,
-      title: this.proccessAndSuppliesQuestions[randomNumberSupplies].title
+    const randomNumberSupplies: number = Math.floor(Math.random() * (this.ENGLISH_QUESTIONS.proccessAndSuppliesQuestions.length));
+    this.proccessAndSuppliesQuestionEN = {
+      question: this.ENGLISH_QUESTIONS.proccessAndSuppliesQuestions[randomNumberSupplies].question,
+      title: this.ENGLISH_QUESTIONS.proccessAndSuppliesQuestions[randomNumberSupplies].title
+    }
+    this.proccessAndSuppliesQuestionPT = {
+      question: this.PORTUGUESE_QUESTIONS.proccessAndSuppliesQuestions[randomNumberSupplies].question,
+      title: this.PORTUGUESE_QUESTIONS.proccessAndSuppliesQuestions[randomNumberSupplies].title
     }
 
-    const randomNumberCharacteristics: number = Math.floor(Math.random() * (this.characteristicsQuestions.length) );
+    const randomNumberCharacteristics: number = Math.floor(Math.random() * (this.ENGLISH_QUESTIONS.characteristicsQuestions.length) );
     if(randomNumberCharacteristics !== 0) {
-      this.beerCharacteristicQuestion = {
-        question: this.characteristicsQuestions[randomNumberCharacteristics].question,
-        title: this.characteristicsQuestions[randomNumberCharacteristics].title
+      this.beerCharacteristicQuestionEN = {
+        question: this.ENGLISH_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].question,
+        title: this.ENGLISH_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].title
+      }
+      this.beerCharacteristicQuestionPT = {
+        question: this.PORTUGUESE_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].question,
+        title: this.PORTUGUESE_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].title
       }
     } else {
-      this.beerCharacteristicQuestion = {
-        question: this.characteristicsQuestions[randomNumberCharacteristics].question,
-        title: this.characteristicsQuestions[randomNumberCharacteristics].title,
-        characteristics: possibleCharacteristics
+      this.beerCharacteristicQuestionEN = {
+        question: this.ENGLISH_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].question,
+        title: this.ENGLISH_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].title,
+        characteristics: possibleCharacteristicsEN
+      }
+      this.beerCharacteristicQuestionPT = {
+        question: this.PORTUGUESE_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].question,
+        title: this.PORTUGUESE_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].title,
+        characteristics: possibleCharacteristicsPT
       }
     }
+
+    this.handleLanguage();
+  }
+
+  handleLanguage() {
+    if(this.language === "EN") {
+      this.recipeQuestion = this.recipeQuestionEN;
+      this.comparisonQuestion = this.comparisonQuestionEN;
+      this.beerCharacteristicQuestion = this.beerCharacteristicQuestionEN;
+      this.proccessAndSuppliesQuestion = this.proccessAndSuppliesQuestionEN
+    } else {
+      this.recipeQuestion = this.recipeQuestionPT;
+      this.comparisonQuestion = this.comparisonQuestionPT;
+      this.beerCharacteristicQuestion = this.beerCharacteristicQuestionPT;
+      this.proccessAndSuppliesQuestion = this.proccessAndSuppliesQuestionPT;
+    }
+    console.log(this.recipeQuestion)
   }
 
   blur() {
@@ -128,6 +189,12 @@ export class FullTestComponent implements OnInit {
 
   back() {
     this.router.navigate(['']);
+  }
+
+  getToggleValue(event: any) {
+    this.language = event.value;
+    console.log(this.language)
+    this.handleLanguage();
   }
 
   generatePDF(){

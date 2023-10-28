@@ -1,0 +1,16 @@
+export const beerCharacteristicsPT = [
+    {value: 'turbidez'},
+    {value: 'amanteigado'},
+    {value: 'baixa retenção de espuma'},
+    {value: 'adstringência'},
+    {value: 'fenólico'},
+    {value: 'corpo baixo'},
+    {value: 'frutado'},
+    {value: 'ácido'},
+    {value: 'milho cozido'},
+    {value: 'amargo'},
+    {value: 'papelão'},
+    {value: 'tipo jerez'},
+    {value: 'acetaldeído'},
+    {value: 'alcóolico'},   
+]

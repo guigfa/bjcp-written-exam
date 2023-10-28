@@ -30,6 +30,9 @@ export class TrueOrFalseComponent implements OnInit {
     id: new FormControl(null),
     value: new FormControl(null, Validators.required),
   })
+  toggleForm: FormGroup = new FormGroup({
+    toggle: new FormControl("PT", Validators.required)
+  })
   result = false;
 
   constructor(private router: Router){
