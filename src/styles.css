@@ -1,4 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0 0 40px 0; font-family: Roboto, "Helvetica Neue", sans-serif;    background-color: #F2F2F2; overflow-x: hidden; }
+
+mat-table {
+    border-radius: 8px;
+    margin-bottom: 20px
+}
+
+button mat-stroked-button {
+    background-color: white;
+}
+
+mat-card {
+    background-color: #FEFEFE !important;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 1536px;
+}
+
+.send-button {
+    justify-self: center;
+    padding: 30px;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px
+}

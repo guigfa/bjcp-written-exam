@@ -10,6 +10,7 @@ import { S0, S0TITLE } from 'src/shared/material/questions/questionsMock';
 })
 export class StyleComparison implements OnInit {
   
+  blured: boolean = true;
   stylesToCompare: any[] = beerDataComparison;
   filteredStyles: any[] = [];
   randomNumbers: number[] = [];
@@ -27,9 +28,7 @@ export class StyleComparison implements OnInit {
   QS0 = S0;
   QS0TITLE = S0TITLE
 
-  constructor(private router: Router){
-
-  }
+  constructor(private router: Router){}
 
   ngOnInit(): void {
     this.getIdsOfComparisons();
@@ -42,6 +41,14 @@ export class StyleComparison implements OnInit {
     this.randomNumbers.forEach(number => {
       this.filteredStyles.push(this.stylesToCompare[number]);
   })}
+
+  blur() {
+    this.blured = !this.blured
+  }
+
+  getBlur() {
+    return this.blured ? 'blur' : ''
+  }
 
   back(){
     this.router.navigate(['']);

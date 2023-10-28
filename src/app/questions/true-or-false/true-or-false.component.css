@@ -3,13 +3,6 @@
     overflow-x: hidden;
 }
 
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 1536px;
-}
 
 header {
     display: flex;
@@ -61,7 +54,6 @@ main {
     margin: 0 auto;
 }
 
-.buttons {
-    display: flex;
-    gap: 12px;
+.radio-group {
+    margin-bottom: 20px;
 }

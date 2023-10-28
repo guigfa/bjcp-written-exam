@@ -2,13 +2,7 @@
     font-family: 'Graphie', 'sans-serif';
 }
 
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 1536px;
-}
+
 
 header {
     display: flex;

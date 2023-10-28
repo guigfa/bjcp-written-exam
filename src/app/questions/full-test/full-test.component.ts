@@ -42,13 +42,10 @@ export class FullTestComponent implements OnInit {
   proccessAndSuppliesQuestion: any;
   recipeQuestion: any;
   comparisonQuestion: any[] = [];
-
-
   characteristicsQuestions: any[] = [
     {question: this.QS1, title: this.QS1TITLE, characteristcs: beerCharacteristics},
     {question: this.QS3, title: this.QS3TITLE},
   ]
-
   proccessAndSuppliesQuestions: any[] = [
     {question: this.QS9, title: this.QS9TITLE},
     {question: this.QS11, title: this.QS11TITLE},
@@ -57,10 +54,7 @@ export class FullTestComponent implements OnInit {
     {question: this.QS8, title: this.QS8TITLE},
     {question: this.QS4, title: this.QS4TITLE},
   ]
-
   comparisonQuestions: any = {question: this.QS0, title: this.QS0TITLE, comparison: beerDataComparison}
-  
-
   recipeQuestions: any = {question: this.QS14, title: this.QS14TITLE, recipe: recipeStyles}
 
   constructor(private router: Router){}
@@ -70,11 +64,19 @@ export class FullTestComponent implements OnInit {
   }
 
   getRandomQuestions() {
-    const randomNumberRecipe = Math.floor(Math.random() * (this.recipeQuestions.recipe.length - 1 ) );
+    const randomNumberRecipe = Math.floor(Math.random() * (this.recipeQuestions.recipe.length - 1));
     const possibleCharacteristics: any[] = [];
-    while(possibleCharacteristics.length < 3) {
-      const number = Math.floor(Math.random() * (beerCharacteristics.length - 1 ) )
-      possibleCharacteristics.push(beerCharacteristics[number])
+    const usedIndexes: number[] = [];
+    const usedComparsions: number[] = []
+
+    while (possibleCharacteristics.length < 3) {
+      let number;
+      do {
+        number = Math.floor(Math.random() * (beerCharacteristics.length - 1));
+      } while (usedIndexes.includes(number));
+
+      possibleCharacteristics.push(beerCharacteristics[number]);
+      usedIndexes.push(number);
     }
 
     this.recipeQuestion = {
@@ -84,11 +86,14 @@ export class FullTestComponent implements OnInit {
     }
 
     while(this.comparisonQuestion.length < 2) {
-      const randomNumberComparison = Math.floor(Math.random() * (this.comparisonQuestions.comparison.length - 1 ) );
+      let number;
+      do {
+       number = Math.floor(Math.random() * (this.comparisonQuestions.comparison.length - 1 ) );
+      } while (usedComparsions.includes(number))
       this.comparisonQuestion.push({
         question: this.QS0,
         title: this.QS0TITLE,
-        comparison: this.comparisonQuestions.comparison[randomNumberComparison]
+        comparison: this.comparisonQuestions.comparison[number]
       })
     }
     
@@ -118,11 +123,7 @@ export class FullTestComponent implements OnInit {
   }
 
   getBlur() {
-    if(this.blured) {
-      return 'blur'
-    } else {
-      return ''
-    }
+    return this.blured ? 'blur' : ''
   }
 
   back() {
@@ -140,7 +141,8 @@ export class FullTestComponent implements OnInit {
       {text: 'BJCP WRITTEN EXAM GENERATOR', style: 'header', alignment: 'center'},
       {text: `Prova gerada em: ${day}/${month}/${year}`, alignment: 'center'},
 
-      {text: 'A prova tem duração de 1h30! - Se programe para conseguir realizar', fontSize: 20, alignment: 'center'},
+      {text: 'A prova tem duração de 1h30! - Se programe para conseguir realizar', fontSize: 20, alignment: 'center', margin: [0, 20, 0, 20]},
+      {text: 'Pegue seus papéis, lapiseira, borracha, calculadora, água e se acomode num lugar tranquilo', fontSize: 20, alignment: 'center'},
       
       {text: 'QUESTÃO 1', pageBreak: 'before', style: 'subheader', alignment: 'center'},
       {
@@ -205,7 +207,7 @@ export class FullTestComponent implements OnInit {
               [
                 {
                   columns: [
-                    {text: `${this.recipeQuestion.recipe.style}`, fontSize: 20},
+                    {text: `${this.recipeQuestion.recipe.style}`, alignment: 'center', fontSize: 20},
                     
                   ]
                 },
@@ -309,32 +311,32 @@ export class FullTestComponent implements OnInit {
       // alignment: 'justify'
     }
     
-      }
-      if(this.beerCharacteristicQuestion.characteristics?.length) {
-        document.content.push( {
-          ul: [
-            {
-              ol: [
-                [
+  }
+  if(this.beerCharacteristicQuestion.characteristics?.length) {
+    document.content.push( {
+      ul: [
+        {
+          ol: [
+            [
+              {
+                columns: [
+                  {text: `${this.beerCharacteristicQuestion.characteristics[0].value}`, fontSize: 20},
                   {
-                    columns: [
-                      {text: `${this.beerCharacteristicQuestion.characteristics[0].value}`, fontSize: 20},
-                      {
-                        stack: [
-                          {text: `${this.beerCharacteristicQuestion.characteristics[1].value}`, fontSize: 20},
-                          
-                        ]
-                      },
-                      {text:`${this.beerCharacteristicQuestion.characteristics[2].value}`, fontSize: 20},
+                    stack: [
+                      {text: `${this.beerCharacteristicQuestion.characteristics[1].value}`, fontSize: 20},
+                      
                     ]
                   },
+                  {text:`${this.beerCharacteristicQuestion.characteristics[2].value}`, fontSize: 20},
                 ]
-              ]
-            },
+              },
+            ]
           ]
-        },)
-      }
+        },
+      ]
+    },)
+  }
 
-    pdfMake.createPdf(document).download('teste.pdf');
+    pdfMake.createPdf(document).download(`${day}/${month}/${year}_WRITTEN.pdf`);
   }
 }
