@@ -1,7 +1,7 @@
 <app-tool-bar></app-tool-bar>
 <div class="container">
     <form [formGroup]="toggleForm">
-        <mat-button-toggle-group [disabled]="!blured" class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
+        <mat-button-toggle-group class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
             <mat-button-toggle value="PT">PT</mat-button-toggle>
             <mat-button-toggle value="EN">EN</mat-button-toggle>
     
@@ -17,12 +17,18 @@
         <span *ngIf="blured && language ==='PT'">
             Após liberar a prova, os botões de linguagem e liberação ficarão desabilitados!
         </span>
+        <span *ngIf="blured && language ==='PT'">
+            Nós recomendamos o download do PDF, a pagina inicial é em branco, não veja a prova antes de iniciar!
+        </span>
 
         <span *ngIf="blured  && language ==='EN'" style="margin-top: 20px">
-            You can choose the test language to release the PDF/do the test by the aplication
+            You can choose the exam language to release the PDF/do the test by the aplication
         </span>
         <span *ngIf="blured && language ==='EN'">
-            After unblur the test, the language and release buttons will be disabled!
+            After unblur the exam, the language and release buttons will be disabled!
+        </span>
+        <span *ngIf="blured && language ==='EN'">
+            We suggest to download the PDF!
         </span>
 
 

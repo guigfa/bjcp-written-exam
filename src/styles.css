@@ -36,3 +36,7 @@ mat-card {
     gap: 12px;
     margin-bottom: 20px
 }
+
+mat-tab-group {
+    margin: 10px 0;
+}

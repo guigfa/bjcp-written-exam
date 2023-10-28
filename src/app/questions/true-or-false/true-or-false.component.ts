@@ -49,8 +49,6 @@ export class TrueOrFalseComponent implements OnInit {
       const randomNumber = Math.floor(Math.random() * (124 - 1 + 1) + 1);
       if(!this.randomNumbers.includes(randomNumber)) this.randomNumbers.push(randomNumber)
     }
-
-    this.randomNumbers.sort((a, b) => a - b)
     
     this.randomNumbers.forEach(number => {
       this.questionsToDisplayPT.push(this.trueOrFalsePT.find(question => question.id === number))

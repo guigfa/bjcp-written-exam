@@ -6,9 +6,10 @@
         <mat-card class="card-class">
             <h1 class="title">Bem vindo ao seu estudo do BJCP Written!</h1>
             <div class="card-titles">
-                <span>Você já acertou {{ hits }} de {{ allQuestions }} nas múltiplas escolhas!</span>
-                <span>Você já gerou {{ deployedTest }} provas!</span>
-                <span>E já finalizou um total de {{ finishedTest }}!</span>
+                <span>Você acertou {{ hits }} de {{ allQuestions }} nas múltiplas escolhas!</span>
+                <span>Gerou {{ deployedTest }} provas, finalizou um total de {{ finishedTest }}!</span>
+                <span>E o mais importante, já comparou estilos {{ finishedTest }} vezes!</span>
+                
             </div>
             <div class="button-remove">
                 <button mat-raised-button color="warn" style="border-radius:50px" class="button-clean" (click)="cleanResults()">Limpar registro</button>

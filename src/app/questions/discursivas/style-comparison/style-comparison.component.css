@@ -13,13 +13,18 @@ header {
 }
 
 mat-table {
-    border: 1px solid black;
+    padding: 10px;
+    border-radius: 8px;
 }
 
 mat-toolbar {
     width: 1536px;
     display: flex;
     justify-content: space-between;
+}
+
+th {
+    text-align: center;
 }
 
 mat-toolbar span {
@@ -65,7 +70,6 @@ main {
 
 .descriptor-table {
     width: 100% !important;
-    border: 1px solid black !important;
     margin-bottom: 20px;
 }
 
@@ -74,9 +78,6 @@ main {
     height: 25px;
 }
 
-.descriptor-table  td {
-    border-right: 1px solid black !important;
-}
 
 .mat-column-id {
     flex: 0 0 5%;

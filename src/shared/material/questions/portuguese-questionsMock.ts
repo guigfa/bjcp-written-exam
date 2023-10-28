@@ -162,3 +162,4 @@ export const S15TITLEPT = 'Discuta o processo do malte e da levedura em determin
 export const S9TITLEPT = 'Defina cada uma dessas técnicas cervejeiras e discute seus efeitos na cerveja finalizada: a) kräusening, b) adding gypsum, and c) fining'
 export const S11TITLEPT = 'Defina enzimas diastáticas e proteolíticas, discuta seus papéis no processo cervejeiro e discuta como elas impactam no sabor da cerveja finalizada.'
 export const S13TITLEPT = 'Discuta o processo de mostura. Sua resposta deve conter os seguintes tópicos:'
+
