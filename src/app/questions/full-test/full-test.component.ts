@@ -8,6 +8,7 @@ import { beerDataComparison } from 'src/shared/material/questions/beer-compariso
 import { recipeStyles } from 'src/shared/material/questions/recipe-styles';
 import { beerCharacteristicsPT } from 'src/shared/material/questions/portuguese-beer-characteristic';
 import { ENGLISH_QUESTIONS, PORTUGUESE_QUESTIONS } from 'src/shared/material/questions/questions-array';
+import { Question } from 'src/shared/material/models/question.model';
 
 const pdfMake = require('pdfmake/build/pdfmake.js');
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
@@ -26,7 +27,7 @@ export class FullTestComponent implements OnInit {
   PORTUGUESE = PORTUGUESEQUESTIONS;
   language: string = "PT";
 
-  beerCharacteristicQuestion: any;
+  beerCharacteristicQuestion: Question;
   proccessAndSuppliesQuestion: any;
   recipeQuestion: any;
   comparisonQuestion: any[] = [];

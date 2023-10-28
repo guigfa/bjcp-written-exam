@@ -1,4 +1,6 @@
-export const S0 = [
+import { Question } from "../models/question.model"
+
+export const S0: Question[] = [
     {
       value: '15%',
       question: 'Describe the aroma, appearance, flavor and mouthfeel of each style according to the current BJCP Beer Style Guidelines.'
@@ -13,7 +15,7 @@ export const S0 = [
     }
 ]
 
-export const S14 = [
+export const S14: Question[] = [
     {
         value: '15%',
         question: 'Style Description: Provide a brief description of the of the target style according to the 2015 BJCP Style Guidelines.'
@@ -32,7 +34,7 @@ export const S14 = [
     }
 ]
 
-export const S1 = [
+export const S1: Question[] = [
     {
         value: '30%',
         question: 'Describe each characteristic and how it is perceived.'
@@ -47,7 +49,7 @@ export const S1 = [
     }
 ]
 
-export const S3 = [
+export const S3: Question[] = [
     {
         value: '40%',
         question: 'Define body, describe how is it perceived, discuss how the brewer controls the body of the beer, and provide examples of styles in which is is desirable to have a light or full body.'
@@ -62,7 +64,7 @@ export const S3 = [
     }
 ]
 
-export const S4 = [
+export const S4: Question[] = [
     {
         value: '30%',
         question: 'Describe hop characteristics and their impact on beer flavor and aroma.'
@@ -77,7 +79,7 @@ export const S4 = [
     }
 ]
 
-export const S8 = [
+export const S8: Question[] = [
     {
         value: '20%',
         question: 'Discuss two characteristics of water that are important for the brewing process.'
@@ -92,7 +94,7 @@ export const S8 = [
     }
 ]
 
-export const S15 = [
+export const S15: Question[] = [
     {
         value: '20%',
         question: 'Identify and describe different types of malts by their colors and the flavors they impart to the beer.'
@@ -107,7 +109,7 @@ export const S15 = [
     }
 ]
 
-export const S9 = [
+export const S9: Question[] = [
     {
         value: '30%',
         question: 'Kräusening'
@@ -122,7 +124,7 @@ export const S9 = [
     }
 ]
 
-export const S11 = [
+export const S11: Question[] = [
     {
         value: '20%',
         question: 'Define each enzyme'
@@ -137,7 +139,7 @@ export const S11 = [
     }
 ]
 
-export const S13 = [
+export const S13: Question[] = [
     {
         value: '50%',
         question: 'Explain what happens in the mashing process, including times and temperatures as appropriate.'
@@ -152,13 +154,13 @@ export const S13 = [
     }
 ]
 
-export const S0TITLE = 'Describe, compare and contrast these three styles: style-1, style-2, and style-3. Your answer should address the following topics:'
-export const S14TITLE = 'Provide a complete ALL-GRAIN recipe and procedure for brewing a(n) <STYLE*>. Please use the table below to help organize your response.'
-export const S1TITLE = 'Describe and discuss the following beer characteristics: a) characteristic-1, b) characteristic-2, and c) characteristic-3. Your answer should address the following topics:'
-export const S3TITLE = 'What are body and mouthfeel? Explain how the brewer controls body and mouthfeel in the beer, addressing the following topics:'
-export const S4TITLE = 'Discuss hops and their role in determining beer flavor and aroma. Your answer should address the following topics:'
-export const S8TITLE = 'Discuss the importance of water in the brewing process. Your answer should address the following topics:'
-export const S15TITLE = 'Discuss the role of malt and yeast in determining beer characteristics. Your answer should address the following topics:'
-export const S9TITLE = 'Define these brewing techniques and discuss their effects on the finished beer: a) kräusening, b) adding gypsum, and c) fining'
-export const S11TITLE = 'Define diastatic and proteolytic enzymes, discuss their roles in the brewing process and describe how they affect the characteristics of the finished beer.'
-export const S13TITLE = 'Discuss the mashing process. Your answer should address the following topics:'
+export const S0TITLE: string = 'Describe, compare and contrast these three styles: style-1, style-2, and style-3. Your answer should address the following topics:'
+export const S14TITLE: string = 'Provide a complete ALL-GRAIN recipe and procedure for brewing a(n) <STYLE*>. Please use the table below to help organize your response.'
+export const S1TITLE: string = 'Describe and discuss the following beer characteristics: a) characteristic-1, b) characteristic-2, and c) characteristic-3. Your answer should address the following topics:'
+export const S3TITLE: string = 'What are body and mouthfeel? Explain how the brewer controls body and mouthfeel in the beer, addressing the following topics:'
+export const S4TITLE: string = 'Discuss hops and their role in determining beer flavor and aroma. Your answer should address the following topics:'
+export const S8TITLE: string = 'Discuss the importance of water in the brewing process. Your answer should address the following topics:'
+export const S15TITLE: string = 'Discuss the role of malt and yeast in determining beer characteristics. Your answer should address the following topics:'
+export const S9TITLE: string = 'Define these brewing techniques and discuss their effects on the finished beer: a) kräusening, b) adding gypsum, and c) fining'
+export const S11TITLE: string = 'Define diastatic and proteolytic enzymes, discuss their roles in the brewing process and describe how they affect the characteristics of the finished beer.'
+export const S13TITLE: string = 'Discuss the mashing process. Your answer should address the following topics:'

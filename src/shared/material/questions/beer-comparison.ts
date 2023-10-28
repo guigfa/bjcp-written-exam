@@ -1,4 +1,6 @@
-export const beerDataComparison = [
+import { StyleComparison } from "../models/style-comparison.model";
+
+export const beerDataComparison: StyleComparison[] = [
     { id: 1, style1: "American Amber Ale", style2: "American Brown Ale", style3: "American Pale Ale" },
     { id: 2, style1: "American Amber Ale", style2: "American Pale Ale", style3: "California Common" },
     { id: 3, style1: "American Barleywine", style2: "Double IPA", style3: "English Barleywine" },

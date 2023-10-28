@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StyleComparison } from 'src/shared/material/models/style-comparison.model';
 import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
 import { beerCharacteristicsEN } from 'src/shared/material/questions/english-beer-characteristic';
 import { beerCharacteristicsPT } from 'src/shared/material/questions/portuguese-beer-characteristic';
@@ -16,10 +17,6 @@ export class ProccessAndSuppliesComponent {
   proccessAndSuppliesDataSource: any[] = [];
   language: string = "PT";
   blured: boolean = true;
-  stylesToCompare: any[] = beerDataComparison;
-  filteredStyles: any[] = [];
-  randomNumbers: number[] = [];
-  count = 2;
   toggleForm: FormGroup = new FormGroup({
     toggle: new FormControl([{value: "PT", disabled: !this.blured}, Validators.required]),
     blur: new FormControl([{value: null}])
@@ -48,8 +45,8 @@ export class ProccessAndSuppliesComponent {
   }
 
   generateRandomQuestions() {
-    const possibleCharacteristicsEN: any[] = [];
-    const possibleCharacteristicsPT: any[] = [];
+    const possibleCharacteristicsEN: Object[] = [];
+    const possibleCharacteristicsPT: Object[] = [];
     const usedIndexes: number[] = [];
 
     while (possibleCharacteristicsEN.length < 3) {

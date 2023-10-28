@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PORTUGUESEQUESTIONS } from 'src/shared/material/questions/questions-per-language';
 
 @Component({
   selector: 'app-study-proccess',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./study-proccess.component.css']
 })
 export class StudyProccessComponent {
-
+  PORTUGUESEQUESTIONS = PORTUGUESEQUESTIONS;
 }

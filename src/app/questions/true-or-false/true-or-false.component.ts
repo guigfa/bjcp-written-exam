@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TrueOrFalse } from 'src/shared/material/models/true-or-false.model';
 import { trueOrFalseMockEN, trueOrFalseMockPT } from 'src/shared/material/questions/true-or-false';
 
 @Component({
@@ -11,21 +12,21 @@ import { trueOrFalseMockEN, trueOrFalseMockPT } from 'src/shared/material/questi
 export class TrueOrFalseComponent implements OnInit {
 
 
-  trueOrFalsePT: any[] = trueOrFalseMockPT.questions;
-  trueOrFalseEN: any[] = trueOrFalseMockEN.questions;
-  trueOrFalse: any[] = [];
+  trueOrFalsePT: TrueOrFalse[] = trueOrFalseMockPT.questions;
+  trueOrFalseEN: TrueOrFalse[] = trueOrFalseMockEN.questions;
+  trueOrFalse: TrueOrFalse[] = [];
   count: number = 0;
   questionsColumns: string[] = [
     'value',
     'description'
   ]
   randomNumbers: number[] = [];
-  controllerList: any[] = [];
-  questionsToDisplayPT: any[] = [];
-  questionsToDisplayEN: any[] = [];
-  questionsToDisplay: any[] = [];
-  questionsToCompare: any[] = [];
-  wrongQuestions: any[] = [];
+  controllerList: TrueOrFalse[] = [];
+  questionsToDisplayPT: TrueOrFalse[] = [];
+  questionsToDisplayEN: TrueOrFalse[] = [];
+  questionsToDisplay: TrueOrFalse[] = [];
+  questionsToCompare: TrueOrFalse[] = [];
+  wrongQuestions: TrueOrFalse[] = [];
   form: FormGroup = new FormGroup({
     id: new FormControl(null),
     value: new FormControl(null, Validators.required),
@@ -63,7 +64,7 @@ export class TrueOrFalseComponent implements OnInit {
     let question = this.questionsToCompare.find(question => question.id === id);
 
     if(event.value === question.value){
-      if(this.controllerList.some((c: any) => c.id === question.id)) return;
+      if(this.controllerList.some((c: TrueOrFalse) => c.id === question.id)) return;
       this.controllerList.push(question)
       this.wrongQuestions = this.wrongQuestions.filter(c => c.id !== question.id);
       this.count++;
