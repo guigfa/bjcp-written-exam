@@ -16,7 +16,7 @@ const pdfMake = require('pdfmake/build/pdfmake.js');
 @Component({
   selector: 'app-full-test',
   templateUrl: './full-test.component.html',
-  styleUrls: ['./full-test.component.css']
+  styleUrls: ['./full-test.component.scss']
 })
 export class FullTestComponent implements OnInit {
   blured: boolean = true;

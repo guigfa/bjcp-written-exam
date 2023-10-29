@@ -10,7 +10,7 @@ import { ENGLISH_QUESTIONS, PORTUGUESE_QUESTIONS } from 'src/shared/material/que
 @Component({
   selector: 'app-proccess-and-supplies',
   templateUrl: './proccess-and-supplies.component.html',
-  styleUrls: ['./proccess-and-supplies.component.css']
+  styleUrls: ['./proccess-and-supplies.component.scss']
 })
 export class ProccessAndSuppliesComponent {
   characteristicsDataSource: any[] = [];

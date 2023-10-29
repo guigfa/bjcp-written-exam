@@ -7,7 +7,7 @@ import { trueOrFalseMockEN, trueOrFalseMockPT } from 'src/shared/material/questi
 @Component({
   selector: 'app-true-or-false',
   templateUrl: './true-or-false.component.html',
-  styleUrls: ['./true-or-false.component.css']
+  styleUrls: ['./true-or-false.component.scss']
 })
 export class TrueOrFalseComponent implements OnInit {
 

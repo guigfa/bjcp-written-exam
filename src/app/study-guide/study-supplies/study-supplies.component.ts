@@ -5,7 +5,7 @@ import { PORTUGUESEQUESTIONS } from 'src/shared/material/questions/questions-per
 @Component({
   selector: 'app-study-supplies',
   templateUrl: './study-supplies.component.html',
-  styleUrls: ['./study-supplies.component.css']
+  styleUrls: ['./study-supplies.component.scss']
 })
 export class StudySuppliesComponent {
   PORTUGUESEQUESTIONS = PORTUGUESEQUESTIONS;

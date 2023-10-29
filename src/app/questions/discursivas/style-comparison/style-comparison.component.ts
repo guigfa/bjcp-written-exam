@@ -8,7 +8,7 @@ import { S0PT, S0TITLEPT } from 'src/shared/material/questions/portuguese-questi
 @Component({
   selector: 'app-style-comparison',
   templateUrl: './style-comparison.component.html',
-  styleUrls: ['./style-comparison.component.css']
+  styleUrls: ['./style-comparison.component.scss']
 })
 export class StyleComparison implements OnInit {
   
