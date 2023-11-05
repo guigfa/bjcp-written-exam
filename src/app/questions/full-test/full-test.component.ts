@@ -9,6 +9,8 @@ import { recipeStyles } from 'src/shared/material/questions/recipe-styles';
 import { beerCharacteristicsPT } from 'src/shared/material/questions/portuguese-beer-characteristic';
 import { ENGLISH_QUESTIONS, PORTUGUESE_QUESTIONS } from 'src/shared/material/questions/questions-array';
 import { Question } from 'src/shared/material/models/question.model';
+import { S0PT, S0TITLEPT } from 'src/shared/material/questions/portuguese-questionsMock';
+import { S0, S0TITLE } from 'src/shared/material/questions/english-questionsMock';
 
 const pdfMake = require('pdfmake/build/pdfmake.js');
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
@@ -27,7 +29,7 @@ export class FullTestComponent implements OnInit {
   PORTUGUESE = PORTUGUESEQUESTIONS;
   language: string = "PT";
 
-  beerCharacteristicQuestion: Question;
+  beerCharacteristicQuestion: any;
   proccessAndSuppliesQuestion: any;
   recipeQuestion: any;
   comparisonQuestion: any[] = [];
@@ -42,11 +44,39 @@ export class FullTestComponent implements OnInit {
   recipeQuestionPT: any;
   comparisonQuestionPT: any[] = [];
   
+  dataSourceComparison: any;
+
+  questionColumnsComparison: any[] = [];
+  questionColumnsRecipe: any[] = [];
+  questionColumnsProccess: any[] = [];
+  questionColumnsCharacteristic: any = [];
+  questionPTComparison = {
+    QS0: S0PT,
+    QS0TITLE: S0TITLEPT
+  };
+  questionENComparison = {
+    QS0: S0,
+    QS0TITLE: S0TITLE
+  }
+  questionPTRecipe = {
+
+  }
+
   constructor(private router: Router){}
 
   ngOnInit(): void {
     this.getRandomQuestions();
-    
+    this.handleDataSources();
+
+  }
+
+  handleDataSources() {
+    this.language === 'PT' ? this.dataSourceComparison = this.questionPTComparison.QS0 : this.dataSourceComparison = this.questionENComparison.QS0;
+    this.questionColumnsComparison = this.dataSourceComparison.map((element: any) => element.question);
+    this.questionColumnsRecipe = this.recipeQuestion.question.map((element: any) => element.question);
+    console.log(this.beerCharacteristicQuestion)
+    this.questionColumnsProccess = this.proccessAndSuppliesQuestion.question.map((element: any) => element.question);
+    this.questionColumnsCharacteristic = this.beerCharacteristicQuestion.question.map((element: any) => element.question);
   }
 
   getRandomQuestions() {
@@ -136,13 +166,16 @@ export class FullTestComponent implements OnInit {
       this.recipeQuestion = this.recipeQuestionEN;
       this.comparisonQuestion = this.comparisonQuestionEN;
       this.beerCharacteristicQuestion = this.beerCharacteristicQuestionEN;
-      this.proccessAndSuppliesQuestion = this.proccessAndSuppliesQuestionEN
+      this.proccessAndSuppliesQuestion = this.proccessAndSuppliesQuestionEN;
+      this.dataSourceComparison = this.questionENComparison.QS0;
     } else {
       this.recipeQuestion = this.recipeQuestionPT;
       this.comparisonQuestion = this.comparisonQuestionPT;
       this.beerCharacteristicQuestion = this.beerCharacteristicQuestionPT;
       this.proccessAndSuppliesQuestion = this.proccessAndSuppliesQuestionPT;
+      this.dataSourceComparison = this.questionPTComparison.QS0;
     }
+    this.handleDataSources();
   }
 
   blur() {

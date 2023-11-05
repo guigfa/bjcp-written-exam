@@ -11,31 +11,160 @@
         <button mat-stroked-button (click)="blur()" [disabled]="!blured" class="blur-button"><mat-icon>remove_red_eye</mat-icon>
             {{ !blured ? "Prova liberada" : "Liberar Prova" }}
         </button>
-        <span *ngIf="blured && language ==='PT'" style="margin-top: 20px">
-            Você pode escolher a linguagem da prova para gerar o PDF/realizar pela aplicação
-        </span>
-        <span *ngIf="blured && language ==='PT'">
-            Após liberar a prova, os botões de linguagem e liberação ficarão desabilitados!
-        </span>
-        <span *ngIf="blured && language ==='PT'">
-            Nós recomendamos o download do PDF, a pagina inicial é em branco, não veja a prova antes de iniciar!
-        </span>
-
-        <span *ngIf="blured  && language ==='EN'" style="margin-top: 20px">
-            You can choose the exam language to release the PDF/do the test by the aplication
-        </span>
-        <span *ngIf="blured && language ==='EN'">
-            After unblur the exam, the language and release buttons will be disabled!
-        </span>
-        <span *ngIf="blured && language ==='EN'">
-            We suggest to download the PDF!
-        </span>
+        <ng-container *ngIf="blured && language ==='PT'" style="margin-top: 20px">
+            <span>
+                Você pode escolher a linguagem da prova para gerar o PDF/realizar pela aplicação
+            </span>
+            <span>
+                Após liberar a prova, os botões de linguagem e liberação ficarão desabilitados!
+            </span>
+            <span>
+                Nós recomendamos o download do PDF, a pagina inicial é em branco, não veja a prova antes de iniciar!
+            </span>
+        </ng-container>
+        <ng-container *ngIf="blured  && language ==='EN'" style="margin-top: 20px">
+            <span >
+                You can choose the exam language to release the PDF/do the test by the aplication
+            </span>
+            <span>
+                After unblur the exam, the language and release buttons will be disabled!
+            </span>
+            <span>
+                We suggest to download the PDF!
+            </span>
+        </ng-container >
 
 
         <div class="full-test" [ngClass]="getBlur()">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iste in accusamus animi. Beatae nulla et laborum? Quos laboriosam obcaecati doloribus explicabo aut et eveniet rerum nisi ipsum! Deserunt, id.
-        </div>
+            <h1 class="question-title">Questão 1</h1>
+            <h2>{{ comparisonQuestion[1].title }}</h2>
+            <mat-table [dataSource]="dataSourceComparison" class="descriptor-table">
+    
+                
+                <ng-container *ngFor="let element of dataSourceComparison; let i = index" [matColumnDef]="element.question">
+                    <th mat-header-cell *matHeaderCellDef>
+                      {{ element.value }}
+                    </th>
+                    <ng-container >
+                        <ng-container mat-cell *matCellDef="let row; let i = index">
+                            <td *ngIf="i === 0">
+                                {{ element.question}}
+                            </td>
+                        </ng-container>
+                    </ng-container>
+                  </ng-container>
+              <tr mat-header-row *matHeaderRowDef="questionColumnsComparison"></tr>
+              <tr mat-row *matRowDef="let row; columns: questionColumnsComparison;"></tr>
+            </mat-table>
+            <div class="options-question">
+                <h5>id: {{ comparisonQuestionPT[0].comparison.id }}</h5>
+                <h2>{{ comparisonQuestionPT[0].comparison.style1 }}</h2>
+                <h2> - </h2>
+                <h2>{{ comparisonQuestionPT[0].comparison.style2 }}</h2>
+                <h2> - </h2>
+                <h2> {{ comparisonQuestionPT[0].comparison.style3 }} </h2>
+              </div>
+            <div class="full-line-separator"></div>
+            <h1 class="question-title">Questão 2</h1>
+            <h2>{{ recipeQuestion.title }}</h2>
+            <mat-table [dataSource]="recipeQuestion.question" class="descriptor-table recipe-table">
+    
+                
+                <ng-container *ngFor="let element of recipeQuestion.question; let i = index" [matColumnDef]="element.question">
+                    <th mat-header-cell *matHeaderCellDef >
+                      {{ element.value }}
+                    </th>
+                    <ng-container >
+                        <ng-container mat-cell *matCellDef="let row; let i = index">
+                            <td *ngIf="i === 0">
+                                {{ element.question}}
+                            </td>
+                        </ng-container>
+                    </ng-container>
+                  </ng-container>
+              <tr mat-header-row *matHeaderRowDef="questionColumnsRecipe"></tr>
+              <tr mat-row *matRowDef="let row; columns: questionColumnsRecipe;"></tr>
+            </mat-table>
+            <div class="options-question">
+                <h2>{{ recipeQuestionPT.recipe.style }}</h2>
+            </div>
+            <div class="full-line-separator"></div>
 
+            <h1 class="question-title">Questão 3</h1>
+            <h2>{{ comparisonQuestion[1].title }}</h2>
+
+            <mat-table [dataSource]="dataSourceComparison" class="descriptor-table">
+                <ng-container *ngFor="let element of dataSourceComparison; let i = index" [matColumnDef]="element.question">
+                    <th mat-header-cell *matHeaderCellDef>
+                      {{ element.value }}
+                    </th>
+                    <ng-container >
+                        <ng-container mat-cell *matCellDef="let row; let i = index">
+                            <td *ngIf="i === 0">
+                                {{ element.question}}
+                            </td>
+                        </ng-container>
+                    </ng-container>
+                  </ng-container>
+              <tr mat-header-row *matHeaderRowDef="questionColumnsComparison"></tr>
+              <tr mat-row *matRowDef="let row; columns: questionColumnsComparison;"></tr>
+        </mat-table>
+        <div class="options-question">
+            <h5>id: {{ comparisonQuestionPT[1].comparison.id }}</h5>
+            <h2>{{ comparisonQuestionPT[1].comparison.style1 }}</h2>
+            <h2> - </h2>
+            <h2>{{ comparisonQuestionPT[1].comparison.style2 }}</h2>
+            <h2> - </h2>
+            <h2> {{ comparisonQuestionPT[1].comparison.style3 }} </h2>
+          </div>
+          <div class="full-line-separator"></div>
+
+            <h1 class="question-title">Questão 4</h1>
+            <h2>{{ proccessAndSuppliesQuestion.title }}</h2>
+            <mat-table [dataSource]="proccessAndSuppliesQuestion.question" class="descriptor-table">
+                <ng-container *ngFor="let element of proccessAndSuppliesQuestion.question; let i = index" [matColumnDef]="element.question">
+                    <th mat-header-cell *matHeaderCellDef>
+                      {{ element.value }}
+                    </th>
+                    <ng-container >
+                        <ng-container mat-cell *matCellDef="let row; let i = index">
+                            <td *ngIf="i === 0">
+                                {{ element.question}}
+                            </td>
+                        </ng-container>
+                    </ng-container>
+                  </ng-container>
+              <tr mat-header-row *matHeaderRowDef="questionColumnsProccess"></tr>
+              <tr mat-row *matRowDef="let row; columns: questionColumnsProccess;"></tr>
+        </mat-table>
+        <div class="full-line-separator"></div>
+        <h1 class="question-title">Questão 5</h1>
+        <h2>{{ beerCharacteristicQuestion.title }}</h2>
+        <mat-table [dataSource]="beerCharacteristicQuestion.question" class="descriptor-table">
+            <ng-container *ngFor="let element of beerCharacteristicQuestion.question; let i = index" [matColumnDef]="element.question">
+                <th mat-header-cell *matHeaderCellDef>
+                    {{ element.value }}
+                </th>
+                <ng-container >
+                    <ng-container mat-cell *matCellDef="let row; let i = index">
+                        <td *ngIf="i === 0">
+                            {{ element.question}}
+                        </td>
+                    </ng-container>
+                </ng-container>
+                </ng-container>
+            <tr mat-header-row *matHeaderRowDef="questionColumnsCharacteristic"></tr>
+            <tr mat-row *matRowDef="let row; columns: questionColumnsCharacteristic;"></tr>
+        </mat-table>
+        <ng-container *ngIf="beerCharacteristicQuestion?.characteristics?.length != 0" style="display: flex">
+            <div class="options-question">
+            <span *ngFor="let characteristic of beerCharacteristicQuestion.characteristics">
+                    <h2>{{ characteristic.value }}</h2>
+                </span>
+            </div>
+        </ng-container>
+        <div class="full-line-separator"></div>
+        </div>  
     </div>
     <div class="buttons">
         <button mat-raised-button color="primary" class="send-button" (click)="generatePDF()">

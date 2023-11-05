@@ -31,3 +31,46 @@
     width: 150px;
     margin: 0 auto;
 }
+
+.full-test {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 100px;
+}
+
+.question-title {
+
+    font-weight: 700;
+}
+
+.options-question {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.full-line-separator {
+    width: 100%;
+    height: 1px;
+    background-color: grey;
+}
+
+mat-table {
+    height: 200px !important;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+th, td {
+    width: 30%;
+    text-align: center;
+    padding: 10px;
+}
+
+.recipe-table {
+    height: 300px !important;
+}
