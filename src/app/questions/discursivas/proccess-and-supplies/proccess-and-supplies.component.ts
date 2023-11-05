@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Question } from 'src/shared/material/models/question.model';
 import { StyleComparison } from 'src/shared/material/models/style-comparison.model';
 import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
 import { beerCharacteristicsEN } from 'src/shared/material/questions/english-beer-characteristic';
@@ -25,10 +26,10 @@ export class ProccessAndSuppliesComponent {
   questionColumns: string[] = [];
 
   
-  beerCharacteristicQuestionPT: any;
-  proccessAndSuppliesQuestionPT: any;
-  proccessAndSuppliesQuestionEN: any;
-  beerCharacteristicQuestionEN: any;
+  beerCharacteristicQuestionPT: Question;
+  proccessAndSuppliesQuestionPT: Question;
+  proccessAndSuppliesQuestionEN: Question;
+  beerCharacteristicQuestionEN: Question;
 
   constructor(private router: Router){}
 

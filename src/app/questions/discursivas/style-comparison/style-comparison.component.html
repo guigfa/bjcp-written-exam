@@ -70,7 +70,7 @@
     </div>
     
     <div class="buttons">
-        <button mat-raised-button class="send-button" color="primary">Finalizar</button>
+        <button mat-raised-button class="send-button" color="primary" [disabled]="blured" (click)="finishComparisons()">Finalizar</button>
         <button mat-stroked-button  class="send-button" (click)="back()" color="warn">Voltar</button>
 
     </div>

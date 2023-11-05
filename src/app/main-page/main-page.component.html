@@ -7,9 +7,12 @@
             <h1 class="title">Bem vindo ao seu estudo do BJCP Written!</h1>
             <div class="card-titles">
                 <span>Você acertou {{ hits }} de {{ allQuestions }} nas múltiplas escolhas!</span>
-                <span>Gerou {{ deployedTest }} provas, finalizou um total de {{ finishedTest }}!</span>
-                <span>E o mais importante, já comparou estilos {{ finishedTest }} vezes!</span>
+                <span>Gerou {{ allDeployedTest }} provas, finalizou um total de {{ finishedTest }}!</span>
+                <span>E o mais importante, já comparou estilos {{ allComparisons }} {{ allComparisons < 2 ? 'vez' : 'vezes'}}!</span>
                 
+            </div>
+            <div class="card-titles" *ngFor="let try of detailedTries">
+                {{ try.day }}/{{try.month}}/{{try.year}} - {{try.hits}} acertos de {{try.total}}
             </div>
             <div class="button-remove">
                 <button mat-raised-button color="warn" style="border-radius:50px" class="button-clean" (click)="cleanResults()">Limpar registro</button>

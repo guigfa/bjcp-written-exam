@@ -48,12 +48,10 @@ export class StyleComparison implements OnInit {
   }
 
   getIdsOfComparisons() {
-    while(this.randomNumbers.length < this.count) this.randomNumbers.push(Math.floor(Math.random() * (this.stylesToCompare.length))) 
-    this.randomNumbers.sort((a, b) => a - b)
+    while(this.randomNumbers.length < this.count) this.randomNumbers.push(Math.floor(Math.random() * (this.stylesToCompare.length)));    this.randomNumbers.sort((a, b) => a - b);
 
-    this.randomNumbers.forEach(number => {
-      this.filteredStyles.push(this.stylesToCompare[number]);
-  })}
+    this.randomNumbers.forEach(number =>  this.filteredStyles.push(this.stylesToCompare[number]));
+  }
 
   getToggleValue(event: any) {
     this.language = event.value;
@@ -67,8 +65,12 @@ export class StyleComparison implements OnInit {
   }
 
   getBlur() {
-
     return this.blured ? 'blur' : ''
+  }
+
+  finishComparisons() {
+    localStorage.setItem('COMPARACAO_FINALIZADA', JSON.stringify(1));
+    this.back();
   }
 
   back(){

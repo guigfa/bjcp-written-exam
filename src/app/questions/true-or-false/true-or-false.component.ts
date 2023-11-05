@@ -88,7 +88,9 @@ export class TrueOrFalseComponent implements OnInit {
     let year = date.getFullYear();
     this.result = true;
 
-    localStorage.setItem("DATA", JSON.stringify(`${day}/${month}/${year}`))
+    localStorage.setItem("DAY", JSON.stringify(`${day}`));
+    localStorage.setItem("MONTH", JSON.stringify(`${month}`));
+    localStorage.setItem("YEAR", JSON.stringify(`${year}`));
     localStorage.setItem("ACERTOS", this.count.toString());
     localStorage.setItem("TENTATIVAS", this.questionsToDisplayPT.length.toString())
   } 

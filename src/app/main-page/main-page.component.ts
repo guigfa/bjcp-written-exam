@@ -8,33 +8,21 @@ import { Router } from '@angular/router';
 })
 export class MainPageComponent implements OnInit, OnDestroy {
 
-  hits: number = Number(localStorage.getItem("TOTAL_ACERTOS"));
-  allQuestions: number = Number(localStorage.getItem("TOTAL_TENTATIVAS"));
-  deployedTest: number = 0;
+  hits: number = Number(localStorage.getItem("ALL_HITS"));
+  allQuestions: number = Number(localStorage.getItem("TOTAL_TRIES"));
+  finishedComparison: number = Number(localStorage.getItem('COMPARACAO_FINALIZADA'))
+  allComparisons: number = Number(localStorage.getItem('TOTAL_COMPARISON'));
+  allDeployedTest: number = Number(localStorage.getItem('ALL_DEPLOYED_TEST'));
+  deployedTest: number = Number(localStorage.getItem('DEPLOYED_TEST'));
   finishedTest: number = 0;
-  detailedTries: any[] = []
+  detailedTries: any[] = [];
+  test: any;
 
 
   constructor(private router: Router){}
 
   ngOnInit(): void {
     this.getLocalStorage();
-  }
-  getLocalStorage(){
-    this.detailedTries.push({
-      data: localStorage.getItem('DATA'),
-      hits: Number(localStorage.getItem("ACERTOS")),
-      total: Number(localStorage.getItem("TENTATIVAS"))
-    })
-    Number(localStorage.getItem("ACERTOS")) ? this.hits += Number(localStorage.getItem("ACERTOS")) : ''
-    Number(localStorage.getItem("TENTATIVAS")) ? this.allQuestions += Number(localStorage.getItem("TENTATIVAS")) : ''
-    let jsonString = localStorage.getItem("TOTAL_DETALHADO");
-    let formatted: any = jsonString?.replace(/\\"/g, '"');
-
-    jsonString = formatted.substring(1, formatted.length - 1);
-    console.log(JSON.parse(jsonString))
-    localStorage.clear();
-
   }
 
   generateComparisonTest() {
@@ -57,14 +45,54 @@ export class MainPageComponent implements OnInit, OnDestroy {
     localStorage.clear();
     this.hits = 0;
     this.allQuestions = 0;
-    console.log(Number(localStorage.getItem("ACERTOS")))
-    console.log(Number(localStorage.getItem("TENTATIVAS")))
+    this.allComparisons = 0;
+    this.allDeployedTest = 0;
+    this.detailedTries = [];
+  }
+
+  getLocalStorage(){
+    const detailedTry = {
+      day: parseFloat(localStorage.getItem('DAY')?.replace('"', '')),
+      month: parseFloat(localStorage.getItem('MONTH')?.replace('"', '')),
+      year: parseFloat(localStorage.getItem('YEAR')?.replace('"', '')),
+      hits: Number(localStorage.getItem("ACERTOS")),
+      total: Number(localStorage.getItem("TENTATIVAS"))
+    }
+
+    Object.values(detailedTry).some(val => isNaN(val)) 
+      ? '' 
+      : this.detailedTries.push(detailedTry); 
+
+    Number(localStorage.getItem("ACERTOS")) 
+      ? this.hits += Number(localStorage.getItem("ACERTOS")) 
+      : '';
+
+    Number(localStorage.getItem("TENTATIVAS")) 
+      ? this.allQuestions += Number(localStorage.getItem("TENTATIVAS")) 
+      : '';
+
+    this.deployedTest ? this.allDeployedTest += this.deployedTest : '';
+    this.finishedComparison ? this.allComparisons += this.finishedComparison : '';
+    this.test = localStorage.getItem('DETAILED_TRIES').replace('[', '').replace(']', '');
+    console.log(this.test)
+
+    localStorage.clear();
+
+  }
+
+  setLocalStorage() {
+    localStorage.setItem('TOTAL_COMPARISON', JSON.stringify(this.allComparisons))
+    localStorage.setItem("TOTAL_DETAILED", JSON.stringify(this.detailedTries))
+    localStorage.setItem("ALL_DEPLOYED_TEST", JSON.stringify(this.allDeployedTest));
+    localStorage.setItem("ALL_HITS", this.hits.toString());
+    localStorage.setItem("TOTAL_TRIES", this.allQuestions.toString())
+    localStorage.setItem("DETAILED_TRIES", JSON.stringify(this.detailedTries))
+    console.log(localStorage.getItem('DETAILED_TRIES'))
   }
 
   ngOnDestroy(): void {
-    localStorage.setItem("TOTAL_DETALHADO", JSON.stringify(this.detailedTries))
-    console.log(localStorage.getItem("TOTAL_DETALHADO"))
-    localStorage.setItem("TOTAL_ACERTOS", this.hits.toString());
-    localStorage.setItem("TOTAL_TENTATIVAS", this.allQuestions.toString())
+
+    console.log(this.test)
+    this.setLocalStorage();
   }
 }
