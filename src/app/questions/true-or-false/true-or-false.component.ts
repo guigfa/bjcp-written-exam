@@ -13,6 +13,7 @@ import { EventEmitter } from 'stream';
 export class TrueOrFalseComponent implements OnInit {
 
 
+  checkedQuestion: number[] = [];
   trueOrFalsePT: TrueOrFalse[] = trueOrFalseMockPT.questions;
   trueOrFalseEN: TrueOrFalse[] = trueOrFalseMockEN.questions;
   trueOrFalse: TrueOrFalse[] = [];
@@ -68,6 +69,10 @@ export class TrueOrFalseComponent implements OnInit {
   }
 
   changeAnswers(event: any, id: number) {
+    if(!this.checkedQuestion.find(identifier => identifier === id)) {
+      this.hasChanged++;
+      this.checkedQuestion.push(id);
+    }
     this.hasChanged++;
     let question = this.questionsToCompare.find(question => question.id === id);
 

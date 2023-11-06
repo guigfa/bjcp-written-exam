@@ -8,7 +8,7 @@
         </mat-button-toggle-group>
     </form>
     <h2 style="margin-bottom: 0;">Tempo recomendado: 30 minutos para as duas questões</h2>
-    <span style="margin-bottom: 20px"><strong>dica:</strong> resposta o mais completo possível, sem esquecer o que se pede</span>
+    <span style="margin-bottom: 20px"><strong>dica:</strong> responda o mais completo possível, sem esquecer o que se pede</span>
     
     <button mat-stroked-button  (click)="blur()" *ngIf="blured" class="blur-button"><mat-icon>remove_red_eye</mat-icon>
         {{ 'Liberar Questões' }}
@@ -67,7 +67,7 @@
 </div>
     
     <div class="buttons">
-        <button mat-raised-button class="send-button" color="primary">Finalizar</button>
+        <button mat-raised-button class="send-button" color="primary" [disabled]="blured">Finalizar</button>
         <button mat-stroked-button  class="send-button" (click)="back()" color="warn">Voltar</button>
 
     </div>

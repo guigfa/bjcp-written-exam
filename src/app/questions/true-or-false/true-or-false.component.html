@@ -37,7 +37,7 @@
         </div>
         
         <div class="buttons" *ngIf="!result">
-            <button mat-raised-button color="primary" class="send-button" (click)="checkAnswer()" >Enviar Respostas</button>
+            <button mat-raised-button color="primary" class="send-button" [disabled]="checkedQuestion.length !== 20" (click)="checkAnswer()" >Enviar Respostas</button>
             <button mat-stroked-button color="warn"class="send-button" (click)="back()">Voltar</button>
         </div>
 
