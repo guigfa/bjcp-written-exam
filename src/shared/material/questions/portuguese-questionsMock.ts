@@ -1,6 +1,6 @@
 export const S0PT = [
     {
-      value: '15%',
+      value: '50%',
       question: 'Descreva o aroma, aparência, sabor e sensação na boca de cada estilo de acordo com o guia 2015 do BJCP'
     },
     {

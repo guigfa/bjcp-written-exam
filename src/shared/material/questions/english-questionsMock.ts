@@ -2,7 +2,7 @@ import { Question } from "../models/question.model"
 
 export const S0: Question[] = [
     {
-      value: '15%',
+      value: '50%',
       question: 'Describe the aroma, appearance, flavor and mouthfeel of each style according to the current BJCP Beer Style Guidelines.'
     },
     {

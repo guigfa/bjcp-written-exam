@@ -48,3 +48,15 @@ mat-tab-group {
     --text-menu: #fff;
     --text-body: #4b4b4b;
   }
+
+.timer {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px 20px;
+    border: 1px solid darkgray;
+    margin-bottom: 20px;
+}
+
+.timer h2 {
+    margin: 0;
+}
