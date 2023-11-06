@@ -1,7 +1,7 @@
 <app-tool-bar></app-tool-bar>
 <div class="container">
     <form [formGroup]="toggleForm">
-        <mat-button-toggle-group class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
+        <mat-button-toggle-group class="radio-group" formControlName="toggle" [disabled]="!blured" (change)="getToggleValue($event)">
             <mat-button-toggle value="PT">PT</mat-button-toggle>
             <mat-button-toggle value="EN">EN</mat-button-toggle>
     
@@ -11,6 +11,9 @@
         <button mat-stroked-button (click)="blur()" [disabled]="!blured" class="blur-button"><mat-icon>remove_red_eye</mat-icon>
             {{ !blured ? "Prova liberada" : "Liberar Prova" }}
         </button>
+        <div class="timer"> 
+            <h2>{{ timer === 5400 ? '1:30:00' : formatTime(timer) }}</h2>
+        </div>
         <ng-container *ngIf="blured && language ==='PT'" style="margin-top: 20px">
             <span>
                 Você pode escolher a linguagem da prova para gerar o PDF/realizar pela aplicação
@@ -35,7 +38,7 @@
         </ng-container >
 
 
-        <div class="full-test" [ngClass]="getBlur()">
+        <div class="full-test" [ngClass]="getBlur()" *ngIf="!blured">
             <h1 class="question-title">Questão 1</h1>
             <h2>{{ comparisonQuestion[1].title }}</h2>
             <mat-table [dataSource]="dataSourceComparison" class="descriptor-table">

@@ -92,3 +92,14 @@ main {
 .blur {
     filter: blur(6px)
 }
+
+.timer {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px 20px;
+    border: 1px solid darkgray;
+}
+
+.timer h2 {
+    margin: 0;
+}

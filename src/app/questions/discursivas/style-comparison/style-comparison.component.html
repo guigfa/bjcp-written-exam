@@ -15,7 +15,10 @@
     <button mat-stroked-button  (click)="blur()" *ngIf="blured" class="blur-button"><mat-icon>remove_red_eye</mat-icon>
         {{ 'Liberar Comparações' }}
     </button>
-    <div [ngClass]="getBlur()">
+    <div class="timer"> 
+        <h2>{{ timer === 1800 ? '30:00' : formatTime(timer) }}</h2>
+    </div>
+    <div [ngClass]="getBlur()" *ngIf="!blured">
         <mat-table [dataSource]="dataSource" class="descriptor-table">
     
                 

@@ -3,6 +3,7 @@ import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TrueOrFalse } from 'src/shared/material/models/true-or-false.model';
 import { trueOrFalseMockEN, trueOrFalseMockPT } from 'src/shared/material/questions/true-or-false';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-true-or-false',
@@ -15,6 +16,7 @@ export class TrueOrFalseComponent implements OnInit {
   trueOrFalsePT: TrueOrFalse[] = trueOrFalseMockPT.questions;
   trueOrFalseEN: TrueOrFalse[] = trueOrFalseMockEN.questions;
   trueOrFalse: TrueOrFalse[] = [];
+  hasChanged: number = 0;
   count: number = 0;
   questionsColumns: string[] = [
     'value',
@@ -40,7 +42,12 @@ export class TrueOrFalseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.generateQuestions()
+    this.generateQuestions();
+    this.handleToggle();
+  }
+
+  handleToggle() {
+    if(this.hasChanged !== 0) this.toggleForm.get('toggle').disable();
   }
 
   generateQuestions(){
@@ -61,6 +68,7 @@ export class TrueOrFalseComponent implements OnInit {
   }
 
   changeAnswers(event: any, id: number) {
+    this.hasChanged++;
     let question = this.questionsToCompare.find(question => question.id === id);
 
     if(event.value === question.value){
@@ -75,10 +83,13 @@ export class TrueOrFalseComponent implements OnInit {
         this.wrongQuestions.push(question)
       }
     } 
+    this.handleToggle();
   }
 
   getToggleValue(ev: any) {
     this.questionsToDisplay = ev.value === "PT" ? this.questionsToDisplayPT : this.questionsToDisplayEN 
+    this.questionsToCompare = ev.value === "PT" ? [...this.questionsToDisplayPT] : [...this.questionsToDisplayEN]
+    this.wrongQuestions = this.questionsToCompare;
   }
 
   checkAnswer(){

@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Question } from 'src/shared/material/models/question.model';
-import { StyleComparison } from 'src/shared/material/models/style-comparison.model';
-import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
 import { beerCharacteristicsEN } from 'src/shared/material/questions/english-beer-characteristic';
 import { beerCharacteristicsPT } from 'src/shared/material/questions/portuguese-beer-characteristic';
 import { ENGLISH_QUESTIONS, PORTUGUESE_QUESTIONS } from 'src/shared/material/questions/questions-array';
+import { formatTimer } from 'src/shared/material/utils/utils';
 
 @Component({
   selector: 'app-proccess-and-supplies',
@@ -14,6 +13,7 @@ import { ENGLISH_QUESTIONS, PORTUGUESE_QUESTIONS } from 'src/shared/material/que
   styleUrls: ['./proccess-and-supplies.component.scss']
 })
 export class ProccessAndSuppliesComponent {
+  timer: number = 1800;
   characteristicsDataSource: any[] = [];
   proccessAndSuppliesDataSource: any[] = [];
   language: string = "PT";
@@ -109,9 +109,21 @@ export class ProccessAndSuppliesComponent {
       }      
   }
   blur() {
-    this.blured = !this.blured
+    this.blured = !this.blured;
+    setInterval(() => {
+      if(this.timer > 0) this.attTimer();
+    }, 1000)
     this.toggleForm.get('toggle').disable();
   }
+
+  attTimer() {
+    this.timer > 0 ? this.timer-- : '';
+  }
+
+  formatTime(timer: number): string {
+    return formatTimer(timer)
+  }
+
 
   getBlur() {
     return this.blured ? 'blur' : ''
@@ -119,5 +131,9 @@ export class ProccessAndSuppliesComponent {
 
   back(){
     this.router.navigate(['']);
+  }
+
+  endTimer() {
+
   }
 }

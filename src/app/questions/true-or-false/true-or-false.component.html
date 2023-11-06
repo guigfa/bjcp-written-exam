@@ -1,7 +1,10 @@
 <app-tool-bar></app-tool-bar>  
     <main>
         <form [formGroup]="toggleForm">
-            <mat-button-toggle-group class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
+            <mat-button-toggle-group class="radio-group" formControlName="toggle" 
+             
+                (change)="getToggleValue($event)"
+            >
                 <mat-button-toggle value="PT">PT</mat-button-toggle>
                 <mat-button-toggle value="EN">EN</mat-button-toggle>
         
@@ -49,7 +52,7 @@
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; width: 150px;">Resposta Correta</th>
                     <td mat-cell *matCellDef="let element" style="margin: 0 auto; width: 150px;"> 
                         <ng-container>
-                                <span>{{ element.value === false ? "Falso" : "Verdadeiro" }}</span>
+                                <span>{{ toggleForm.get('toggle').value === 'PT' ? (element.value === false ? "Falso" : "Verdadeiro") : (element.value === false ? "False" : "True")  }}</span>
                         </ng-container> 
                     </td>
                   </ng-container>

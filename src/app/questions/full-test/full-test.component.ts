@@ -11,6 +11,7 @@ import { ENGLISH_QUESTIONS, PORTUGUESE_QUESTIONS } from 'src/shared/material/que
 import { Question } from 'src/shared/material/models/question.model';
 import { S0PT, S0TITLEPT } from 'src/shared/material/questions/portuguese-questionsMock';
 import { S0, S0TITLE } from 'src/shared/material/questions/english-questionsMock';
+import { formatTimer } from 'src/shared/material/utils/utils';
 
 const pdfMake = require('pdfmake/build/pdfmake.js');
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
@@ -58,9 +59,8 @@ export class FullTestComponent implements OnInit {
     QS0: S0,
     QS0TITLE: S0TITLE
   }
-  questionPTRecipe = {
 
-  }
+  timer = 5400;
 
   constructor(private router: Router){}
 
@@ -74,7 +74,6 @@ export class FullTestComponent implements OnInit {
     this.language === 'PT' ? this.dataSourceComparison = this.questionPTComparison.QS0 : this.dataSourceComparison = this.questionENComparison.QS0;
     this.questionColumnsComparison = this.dataSourceComparison.map((element: any) => element.question);
     this.questionColumnsRecipe = this.recipeQuestion.question.map((element: any) => element.question);
-    console.log(this.beerCharacteristicQuestion)
     this.questionColumnsProccess = this.proccessAndSuppliesQuestion.question.map((element: any) => element.question);
     this.questionColumnsCharacteristic = this.beerCharacteristicQuestion.question.map((element: any) => element.question);
   }
@@ -180,7 +179,19 @@ export class FullTestComponent implements OnInit {
 
   blur() {
     this.blured = !this.blured;
+    this.toggleForm.get('toggle').disable();
+    setInterval(() => {
+      if(this.timer > 0) this.attTimer();
+    }, 1000)
     localStorage.setItem('DEPLOYED_TEST', JSON.stringify(1));
+  }
+
+  attTimer() {
+    this.timer > 0 ? this.timer-- : '';
+  }
+
+  formatTime(timer: number): string {
+    return formatTimer(timer)
   }
 
   getBlur() {

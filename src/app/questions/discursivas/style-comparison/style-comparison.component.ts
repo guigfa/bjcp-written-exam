@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
 import { S0, S0TITLE } from 'src/shared/material/questions/english-questionsMock';
 import { S0PT, S0TITLEPT } from 'src/shared/material/questions/portuguese-questionsMock';
+import { formatTimer } from 'src/shared/material/utils/utils';
 
 @Component({
   selector: 'app-style-comparison',
@@ -12,6 +13,7 @@ import { S0PT, S0TITLEPT } from 'src/shared/material/questions/portuguese-questi
 })
 export class StyleComparison implements OnInit {
   
+  timer: number = 1800;
   language: string = "PT";
   dataSource: any;
   blured: boolean = true;
@@ -58,11 +60,23 @@ export class StyleComparison implements OnInit {
     this.language === "PT" ? this.dataSource = this.questionPT.QS0 : this.dataSource = this.questionEN.QS0
     this.questionColumns = this.dataSource.map((element: any) => element.question);
   }
+
   blur() {
     this.blured = !this.blured
-
+    setInterval(() => {
+      if(this.timer > 0) this.attTimer();
+    }, 1000)
     this.toggleForm.get('toggle').disable();
   }
+
+  attTimer() {
+    this.timer > 0 ? this.timer-- : '';
+  }
+
+  formatTime(timer: number): string {
+    return formatTimer(timer)
+  }
+
 
   getBlur() {
     return this.blured ? 'blur' : ''
