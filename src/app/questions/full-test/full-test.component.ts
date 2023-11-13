@@ -4,14 +4,13 @@ import { Router } from '@angular/router';
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { ENGLISHQUESTIONS, PORTUGUESEQUESTIONS } from 'src/shared/material/questions/questions-per-language';
 import { beerCharacteristicsEN } from 'src/shared/material/questions/english-beer-characteristic';
-import { beerDataComparison } from 'src/shared/material/questions/beer-comparison';
-import { recipeStyles } from 'src/shared/material/questions/recipe-styles';
 import { beerCharacteristicsPT } from 'src/shared/material/questions/portuguese-beer-characteristic';
 import { ENGLISH_QUESTIONS, PORTUGUESE_QUESTIONS } from 'src/shared/material/questions/questions-array';
-import { Question } from 'src/shared/material/models/question.model';
 import { S0PT, S0TITLEPT } from 'src/shared/material/questions/portuguese-questionsMock';
 import { S0, S0TITLE } from 'src/shared/material/questions/english-questionsMock';
 import { formatTimer } from 'src/shared/material/utils/utils';
+import { TrueOrFalse } from 'src/shared/material/models/true-or-false.model';
+import { trueOrFalseMockEN, trueOrFalseMockPT } from 'src/shared/material/questions/true-or-false';
 
 const pdfMake = require('pdfmake/build/pdfmake.js');
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
@@ -51,6 +50,9 @@ export class FullTestComponent implements OnInit {
   questionColumnsRecipe: any[] = [];
   questionColumnsProccess: any[] = [];
   questionColumnsCharacteristic: any = [];
+  questionsColumnsTF = [
+    'description'
+  ]
   questionPTComparison = {
     QS0: S0PT,
     QS0TITLE: S0TITLEPT
@@ -58,7 +60,13 @@ export class FullTestComponent implements OnInit {
   questionENComparison = {
     QS0: S0,
     QS0TITLE: S0TITLE
-  }
+  };
+  trueOrFalsePT: TrueOrFalse[] = trueOrFalseMockPT.questions;
+  trueOrFalseEN: TrueOrFalse[] = trueOrFalseMockEN.questions;
+  randomNumbersTrueOrFalse: number[] = [];
+  trueOrFalseQuestions: TrueOrFalse[] = [];
+  trueOrFalseFilteredPT: TrueOrFalse[] = [];
+  trueOrFalseFilteredEN: TrueOrFalse[] = []
 
   timer = 5400;
 
@@ -84,6 +92,16 @@ export class FullTestComponent implements OnInit {
     const possibleCharacteristicsPT: any[] = [];
     const usedIndexes: number[] = [];
     const usedComparsions: number[] = []
+
+    while(this.randomNumbersTrueOrFalse.length < 20) {
+      const randomNumber = Math.floor(Math.random() * (124 - 1 + 1) + 1);
+      if(!this.randomNumbersTrueOrFalse.includes(randomNumber)) this.randomNumbersTrueOrFalse.push(randomNumber)
+    }
+    
+    this.randomNumbersTrueOrFalse.forEach(number => {
+      this.trueOrFalseFilteredPT.push(this.trueOrFalsePT.find(question => question.id === number))
+      this.trueOrFalseFilteredEN.push(this.trueOrFalseEN.find(question => question.id === number))
+    })
 
     while (possibleCharacteristicsEN.length < 3) {
       let number;
@@ -167,13 +185,16 @@ export class FullTestComponent implements OnInit {
       this.beerCharacteristicQuestion = this.beerCharacteristicQuestionEN;
       this.proccessAndSuppliesQuestion = this.proccessAndSuppliesQuestionEN;
       this.dataSourceComparison = this.questionENComparison.QS0;
+      this.trueOrFalseQuestions = this.trueOrFalseFilteredEN;
     } else {
       this.recipeQuestion = this.recipeQuestionPT;
       this.comparisonQuestion = this.comparisonQuestionPT;
       this.beerCharacteristicQuestion = this.beerCharacteristicQuestionPT;
       this.proccessAndSuppliesQuestion = this.proccessAndSuppliesQuestionPT;
       this.dataSourceComparison = this.questionPTComparison.QS0;
+      this.trueOrFalseQuestions = this.trueOrFalseFilteredPT;
     }
+    console.log(this.trueOrFalseQuestions)
     this.handleDataSources();
   }
 
@@ -220,19 +241,49 @@ export class FullTestComponent implements OnInit {
 
         {text: 'A prova tem duração de 1h30! - Se programe para conseguir realizar', fontSize: 20, alignment: 'center', margin: [0, 20, 0, 20]},
         {text: 'Pegue seus papéis, lapiseira, borracha, calculadora, água e se acomode num lugar tranquilo', fontSize: 20, alignment: 'center'},
-        
+        {text: 'VERDADEIRO OU FALSO', pageBreak: 'before', style: 'subheader', alignment: 'center'},
+        {
+          style: 'tableExample',
+          color: '#444',
+          table: {
+            widths: [70, 'auto'],
+            headerRows: 2,
+            body: [
+              [{text: 'V | F', style: 'VF'}, {text: `1 - ${this.trueOrFalseQuestions[0].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `2 - ${this.trueOrFalseQuestions[1].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `3 - ${this.trueOrFalseQuestions[2].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `4 - ${this.trueOrFalseQuestions[3].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `5 - ${this.trueOrFalseQuestions[4].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `6 - ${this.trueOrFalseQuestions[5].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `7 - ${this.trueOrFalseQuestions[6].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `8 - ${this.trueOrFalseQuestions[7].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `9 - ${this.trueOrFalseQuestions[8].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `10 - ${this.trueOrFalseQuestions[9].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `11 - ${this.trueOrFalseQuestions[10].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `12 - ${this.trueOrFalseQuestions[11].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `13 - ${this.trueOrFalseQuestions[12].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `14 - ${this.trueOrFalseQuestions[13].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `15 - ${this.trueOrFalseQuestions[14].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `16 - ${this.trueOrFalseQuestions[15].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `17 - ${this.trueOrFalseQuestions[16].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `18 - ${this.trueOrFalseQuestions[17].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `19 - ${this.trueOrFalseQuestions[18].description}`, style: 'trueOrFalse', alignment: 'left'}],
+              [{text: 'V | F', style: 'VF'}, {text: `20 - ${this.trueOrFalseQuestions[19].description}`, style: 'trueOrFalse', alignment: 'left'}],
+            ]
+          }
+        },
         {text: 'QUESTÃO 1', pageBreak: 'before', style: 'subheader', alignment: 'center'},
         {
           style: 'tableExample',
           color: '#444',
           table: {
-            widths: [200, 'auto'],
+            widths: [60, 'auto'],
             headerRows: 2,
             body: [
               [{text: `${this.comparisonQuestion[0].title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-              [{text: `${this.comparisonQuestion[0].question[0].value}`}, {text: `${this.comparisonQuestion[0].question[0].question}`}],
-              [{text: `${this.comparisonQuestion[0].question[1].value}`}, {text: `${this.comparisonQuestion[0].question[1].question}`}],
-              [{text: `${this.comparisonQuestion[0].question[2].value}`}, {text: `${this.comparisonQuestion[0].question[2].question}`}],
+              [{text: `${this.comparisonQuestion[0].question[0].value}`, style: 'value'}, {text: `${this.comparisonQuestion[0].question[0].question}`}],
+              [{text: `${this.comparisonQuestion[0].question[1].value}`, style: 'value'}, {text: `${this.comparisonQuestion[0].question[1].question}`}],
+              [{text: `${this.comparisonQuestion[0].question[2].value}`, style: 'value'}, {text: `${this.comparisonQuestion[0].question[2].question}`}],
             ]
           }
         },
@@ -266,14 +317,14 @@ export class FullTestComponent implements OnInit {
           style: 'tableExample',
           color: '#444',
           table: {
-            widths: [200, 'auto'],
+            widths: [60, 'auto'],
             headerRows: 2,
             body: [
               [{text: `${this.recipeQuestion.title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-              [{text: `${this.recipeQuestion.question[0].value}`}, {text: `${this.recipeQuestion.question[0].question}`}],
-              [{text: `${this.recipeQuestion.question[1].value}`}, {text: `${this.recipeQuestion.question[1].question}`}],
-              [{text: `${this.recipeQuestion.question[2].value}`}, {text: `${this.recipeQuestion.question[2].question}`}],
-              [{text: `${this.recipeQuestion.question[3].value}`}, {text: `${this.recipeQuestion.question[3].question}`}],
+              [{text: `${this.recipeQuestion.question[0].value}`, style: 'value'}, {text: `${this.recipeQuestion.question[0].question}`}],
+              [{text: `${this.recipeQuestion.question[1].value}`, style: 'value'}, {text: `${this.recipeQuestion.question[1].question}`}],
+              [{text: `${this.recipeQuestion.question[2].value}`, style: 'value'}, {text: `${this.recipeQuestion.question[2].question}`}],
+              [{text: `${this.recipeQuestion.question[3].value}`, style: 'value'}, {text: `${this.recipeQuestion.question[3].question}`}],
             ]
           }
         },
@@ -298,13 +349,13 @@ export class FullTestComponent implements OnInit {
           style: 'tableExample',
           color: '#444',
           table: {
-            widths: [200, 'auto'],
+            widths: [60, 'auto'],
             headerRows: 2,
             body: [
               [{text: `${this.comparisonQuestion[1].title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-              [{text: `${this.comparisonQuestion[1].question[0].value}`}, {text: `${this.comparisonQuestion[1].question[0].question}`}],
-              [{text: `${this.comparisonQuestion[1].question[1].value}`}, {text: `${this.comparisonQuestion[1].question[1].question}`}],
-              [{text: `${this.comparisonQuestion[1].question[2].value}`}, {text: `${this.comparisonQuestion[1].question[2].question}`}],
+              [{text: `${this.comparisonQuestion[1].question[0].value}`, style: 'value'}, {text: `${this.comparisonQuestion[1].question[0].question}`}],
+              [{text: `${this.comparisonQuestion[1].question[1].value}`, style: 'value'}, {text: `${this.comparisonQuestion[1].question[1].question}`}],
+              [{text: `${this.comparisonQuestion[1].question[2].value}`, style: 'value'}, {text: `${this.comparisonQuestion[1].question[2].question}`}],
             ]
           }
         },
@@ -336,13 +387,13 @@ export class FullTestComponent implements OnInit {
           style: 'tableExample',
           color: '#444',
           table: {
-            widths: [200, 'auto'],
+            widths: [60, 'auto'],
             headerRows: 3,
             body: [
               [{text: `${this.proccessAndSuppliesQuestion.title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-              [{text: `${this.proccessAndSuppliesQuestion.question[0].value}`}, {text: `${this.proccessAndSuppliesQuestion.question[0].question}`}],
-              [{text: `${this.proccessAndSuppliesQuestion.question[1].value}`}, {text: `${this.proccessAndSuppliesQuestion.question[1].question}`}],
-              [{text: `${this.proccessAndSuppliesQuestion.question[2].value}`}, {text: `${this.proccessAndSuppliesQuestion.question[2].question}`}],
+              [{text: `${this.proccessAndSuppliesQuestion.question[0].value}`, style: 'value'}, {text: `${this.proccessAndSuppliesQuestion.question[0].question}`}],
+              [{text: `${this.proccessAndSuppliesQuestion.question[1].value}`, style: 'value'}, {text: `${this.proccessAndSuppliesQuestion.question[1].question}`}],
+              [{text: `${this.proccessAndSuppliesQuestion.question[2].value}`, style: 'value'}, {text: `${this.proccessAndSuppliesQuestion.question[2].question}`}],
             ]
           }
         },
@@ -351,13 +402,13 @@ export class FullTestComponent implements OnInit {
           style: 'tableExample',
           color: '#444',
           table: {
-            widths: [200, 'auto'],
+            widths: [60, 'auto'],
             headerRows: 2,
             body: [
               [{text: `${this.beerCharacteristicQuestion.title}`, style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
-              [{text: `${this.beerCharacteristicQuestion.question[0].value}`}, {text: `${this.beerCharacteristicQuestion.question[0].question}`}],
-              [{text: `${this.beerCharacteristicQuestion.question[1].value}`}, {text: `${this.beerCharacteristicQuestion.question[1].question}`}],
-              [{text: `${this.beerCharacteristicQuestion.question[2].value}`}, {text: `${this.beerCharacteristicQuestion.question[2].question}`}],
+              [{text: `${this.beerCharacteristicQuestion.question[0].value}`, style: 'value'}, {text: `${this.beerCharacteristicQuestion.question[0].question}`}],
+              [{text: `${this.beerCharacteristicQuestion.question[1].value}`, style: 'value'}, {text: `${this.beerCharacteristicQuestion.question[1].question}`}],
+              [{text: `${this.beerCharacteristicQuestion.question[2].value}`, style: 'value'}, {text: `${this.beerCharacteristicQuestion.question[2].question}`}],
             ]
           }
         },
@@ -378,9 +429,26 @@ export class FullTestComponent implements OnInit {
         tableExample: {
           margin: [0, 5, 0, 15]
         },
+        value: {
+          alignment: 'center',
+          fontSize: 15,
+          bold: true
+        },
         tableHeader: {
           bold: true,
           fontSize: 13,
+          color: 'black'
+        },
+        trueOrFalse: {
+          bold: false,
+          fontSize: 13,
+          color: 'black'
+        },
+        VF: {
+          bold: true,
+          alignment: 'center',
+          lineHeight: 2,
+          fontSize: 20,
           color: 'black'
         }
       },

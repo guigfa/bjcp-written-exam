@@ -39,6 +39,18 @@
 
 
         <div class="full-test" [ngClass]="getBlur()" *ngIf="!blured">
+            <div>
+                <mat-table [dataSource]="trueOrFalseQuestions" class="margin-table">
+        
+                      <ng-container matColumnDef="description">
+                          <th mat-header-cell *matHeaderCellDef style="font-size: 30px; text-align: center;">Pergunta</th>
+                              <td mat-cell *matCellDef="let element; let i = index" class="left-align vertical-center" style="text-align: left;"> <span style="font-weight: 700;">{{i+1}} - </span>{{ (element.description) }} </td>
+                      </ng-container>
+        
+                      <tr mat-header-row *matHeaderRowDef="questionsColumnsTF"></tr>
+                      <tr mat-row *matRowDef="let row; columns: questionsColumnsTF;"></tr>
+                </mat-table>
+            </div>
             <h1 class="question-title">Questão 1</h1>
             <h2>{{ comparisonQuestion[1].title }}</h2>
             <mat-table [dataSource]="dataSourceComparison" class="descriptor-table">
