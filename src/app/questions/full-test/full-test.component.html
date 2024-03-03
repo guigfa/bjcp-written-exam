@@ -1,4 +1,3 @@
-<app-tool-bar></app-tool-bar>
 <div class="container">
     <form [formGroup]="toggleForm">
         <mat-button-toggle-group class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
@@ -182,7 +181,7 @@
         </div>  
     </div>
     <div class="buttons">
-        <button mat-raised-button color="primary" class="send-button" (click)="generatePDF()">
+        <button mat-raised-button color="primary" class="send-button" (click)="PDF()">
             Gerar PDF
         </button>
         <button (click)="back()" class="send-button" mat-stroked-button color="warn">Voltar</button>

@@ -25,7 +25,6 @@ export class ProccessAndSuppliesComponent {
   proccessColumns: string[] = []
   questionColumns: string[] = [];
 
-  
   beerCharacteristicQuestionPT: Question;
   proccessAndSuppliesQuestionPT: Question;
   proccessAndSuppliesQuestionEN: Question;
@@ -37,19 +36,32 @@ export class ProccessAndSuppliesComponent {
     this.generateRandomQuestions();
     this.getDataSources();
   }
-
+  
   getDataSources() {
-    this.characteristicsDataSource = [this.beerCharacteristicQuestionPT];
-    this.proccessAndSuppliesDataSource = [this.proccessAndSuppliesQuestionPT];
-    this.questionColumns = this.beerCharacteristicQuestionPT.question.map((element: any) => element.question);
-    this.proccessColumns = this.proccessAndSuppliesQuestionPT.question.map((element: any) => element.question);
+    this.characteristicsDataSource = [this.currentCharacteristicsDataSource()];
+    this.proccessAndSuppliesDataSource = [this.currentProccessAndSuppliesDataSource()];
+    this.updateQuestionColumns();
   }
-
+  
+  currentCharacteristicsDataSource(): Question {
+    return this.language === 'PT' ? this.beerCharacteristicQuestionPT : this.beerCharacteristicQuestionEN;
+  }
+  
+  currentProccessAndSuppliesDataSource(): Question {
+    return this.language === 'PT' ? this.proccessAndSuppliesQuestionPT : this.proccessAndSuppliesQuestionEN;
+  }
+  
+  updateQuestionColumns() {
+    const characteristicsDataSource = this.currentCharacteristicsDataSource();
+    this.questionColumns = characteristicsDataSource.question.map((element: any) => element.question);
+    this.proccessColumns = this.currentProccessAndSuppliesDataSource().question.map((element: any) => element.question);
+  }
+  
   generateRandomQuestions() {
     const possibleCharacteristicsEN: Object[] = [];
     const possibleCharacteristicsPT: Object[] = [];
     const usedIndexes: number[] = [];
-
+  
     while (possibleCharacteristicsEN.length < 3) {
       let number;
       do {
@@ -59,55 +71,46 @@ export class ProccessAndSuppliesComponent {
       possibleCharacteristicsEN.push(beerCharacteristicsEN[number]);
       usedIndexes.push(number);
     }
-    
-    const randomNumberSupplies: number = Math.floor(Math.random() * (ENGLISH_QUESTIONS.proccessAndSuppliesQuestions.length));
+  
+    const randomNumberSupplies = Math.floor(Math.random() * ENGLISH_QUESTIONS.proccessAndSuppliesQuestions.length);
     this.proccessAndSuppliesQuestionEN = {
       question: ENGLISH_QUESTIONS.proccessAndSuppliesQuestions[randomNumberSupplies].question,
       title: ENGLISH_QUESTIONS.proccessAndSuppliesQuestions[randomNumberSupplies].title
-    }
+    };
     this.proccessAndSuppliesQuestionPT = {
       question: PORTUGUESE_QUESTIONS.proccessAndSuppliesQuestions[randomNumberSupplies].question,
       title: PORTUGUESE_QUESTIONS.proccessAndSuppliesQuestions[randomNumberSupplies].title
-    }
-
-    const randomNumberCharacteristics: number = Math.floor(Math.random() * (ENGLISH_QUESTIONS.characteristicsQuestions.length) );
-    if(randomNumberCharacteristics !== 0) {
+    };
+  
+    const randomNumberCharacteristics: number = Math.floor(Math.random() * (ENGLISH_QUESTIONS.characteristicsQuestions.length));
+    if (randomNumberCharacteristics !== 0) {
       this.beerCharacteristicQuestionEN = {
         question: ENGLISH_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].question,
         title: ENGLISH_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].title
-      }
+      };
       this.beerCharacteristicQuestionPT = {
         question: PORTUGUESE_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].question,
         title: PORTUGUESE_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].title
-      }
+      };
     } else {
       this.beerCharacteristicQuestionEN = {
         question: ENGLISH_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].question,
         title: ENGLISH_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].title,
         characteristics: possibleCharacteristicsEN
-      }
+      };
       this.beerCharacteristicQuestionPT = {
         question: PORTUGUESE_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].question,
         title: PORTUGUESE_QUESTIONS.characteristicsQuestions[randomNumberCharacteristics].title,
         characteristics: possibleCharacteristicsPT
-      }
+      };
     }
   }
-
+  
   getToggleValue(event: any) {
-      this.language = event.value;
-      if(this.language === "PT") {
-        this.characteristicsDataSource = [this.beerCharacteristicQuestionPT];
-        this.proccessAndSuppliesDataSource = [this.proccessAndSuppliesQuestionPT];
-        this.questionColumns = this.beerCharacteristicQuestionPT.question.map((element: any) => element.question);
-        this.proccessColumns = this.proccessAndSuppliesQuestionPT.question.map((element: any) => element.question)
-      } else{
-        this.characteristicsDataSource = [this.beerCharacteristicQuestionEN];
-        this.proccessAndSuppliesDataSource = [this.proccessAndSuppliesQuestionEN]
-        this.questionColumns = this.beerCharacteristicQuestionEN.question.map((element: any) => element.question);
-        this.proccessColumns = this.proccessAndSuppliesQuestionEN.question.map((element: any) => element.question)
-      }      
+    this.language = event.value;
+    this.getDataSources();
   }
+  
   blur() {
     this.blured = !this.blured;
     setInterval(() => {
@@ -131,9 +134,5 @@ export class ProccessAndSuppliesComponent {
 
   back(){
     this.router.navigate(['']);
-  }
-
-  endTimer() {
-
   }
 }
