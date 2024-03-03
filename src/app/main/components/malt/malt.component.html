@@ -1,0 +1,100 @@
+<mat-card class="card-class">
+    <h1 class="title">Malte</h1 >
+    <span style="padding-bottom: 20px;">Guia de estudo</span>
+    <mat-accordion class="accordion">
+    <mat-expansion-panel class="expansion-panel" [expanded]="false">
+      <mat-expansion-panel-header >
+        <mat-panel-title class="additionals-title">
+          Pergunta relacionada
+        </mat-panel-title>
+        <mat-panel-description >
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="formulas-title">
+        <span class="title-card">
+          T15 - {{ PORTUGUESEQUESTIONS.QS15TITLE }}
+        </span>
+        <ul>
+          <ng-container *ngFor="let question of PORTUGUESEQUESTIONS.QS15">
+            <li>
+              <strong>{{ question.value }}</strong> - {{ question.question }}
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      </mat-expansion-panel>
+        <mat-expansion-panel class="expansion-panel" [expanded]="false">
+          <mat-expansion-panel-header >
+            <mat-panel-title class="additionals-title">
+              Malteação
+            </mat-panel-title>
+            <mat-panel-description >
+
+            </mat-panel-description>
+            
+            
+          </mat-expansion-panel-header>
+          <div class="formulas-title">
+              <span class="title-card">
+                Malte
+              </span>
+              <span>
+                    <p class="formulas-title">
+                      O malte é um grão que passou pelo processo de germinação induzida, fazendo com que seu
+                      material proteíco e enzimático seja mais elevado em relação a antes desta etapa;
+                      O processo é baseado em aumentar a umidade do grão, geralmente cevada ou trigo,
+                      colocando-o submerso em água durante um determinado tempo, após isso, o grão é retirado
+                      e seco, até atingir a umidade total entre 4% e 10% a variar pelo processo de kilning que
+                      será submetido. 
+                      O grão então será exposto a uma fonte de calor, passando por um processo em que o endosperma é submetido
+                      a diversas modificações, principalmente com a atuação de enzimas proteolíticas, quebrando os polipeptídeos
+                      em peptídeos e transformando em FAN, e algumas enzimas diastáticas realizando a quebra de uma baixa
+                      parcela de açúcares.<br>
+                    </p>
+                <span class="title-card">
+                  Coloração
+                </span>
+                    <p class="formulas-title">
+                      A coloração da cerveja finalizada é diretamente impactada pela coloração dos maltes utilizados.
+                      Isso se dá por conta da infusão direta dos grãos à água que posteriormente se tornará o mosto cervejeiro,
+                      grandes cargas de maltes especiais, pricipalmente caramelos e torrados, modificarão o sabor e cor da cerveja 
+                      a depender do produtor e tipo de malte.<br>
+                      Grãos mais claros fornecerão a maior ou toda a parcela de açúcar solúvel e disponível para a atuação da 
+                      levedura, estes têm grande carga enzimática e pouca modificação de cor e sabor 
+                      Os grãos mais escuros contém pouco poder enzimático e contribuirão com pouco potencial de extração de açúcares 
+                      ao mosto, portanto é necessário utilizar maltes base para a obtenção da grande parcela de densidade original 
+                      projetada para a receita. A parcela de maltes especiais geralmente compõe de 0% a 30% da composição geral 
+                      de grãos - maltes tostados de 0% a 20%, maltes caramelo de 0% a 25% e maltes torrados de 0% a 10%;
+                    </p>
+                    <p class="formulas-title">
+                      A coloração do malte tende a variar por três fatores: o tempo e temperatura de secagem, e a umidade
+                      do grão;
+                      Durante a secagem, o grão é escolhido primeiramente por sua quantidade residual de água - umidade - 
+                      e assim passará por etapas de aquecimento em uma grande secadora, durante a evaporação da água, os açúcares
+                       residuais do grão passam por processo de modificação - caramelização e maillard - que impactarão<br>
+                      Para maltes bases as colorações mais comuns variam de <strong>2SRM a 10SRM - amarelo palha a dourado claro -</strong> 
+                      e impactam com sabores mais suaves, indicando pouca tosta/torra. Esses descritivos podem ser como miolo de pão,
+                      casca de pão, massa de pizza e outros produtos similares alimentícios com torra branda/casca clara.
+                    </p>
+                </span>
+                <div style="display: flex; flex-direction: column;">
+                    
+                </div>
+              <div class="line-separator"></div>
+              
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expansion-panel" [expanded]="false">
+            <mat-expansion-panel-header >
+              <mat-panel-title class="additionals-title">
+                Tipos de Malte
+              </mat-panel-title>
+              <mat-panel-description >
+                  Base, tostado, caramelo, torrado e não convencionais
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+</mat-card>

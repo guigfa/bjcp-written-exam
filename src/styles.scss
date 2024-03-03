@@ -4,6 +4,10 @@
 html, body { height: 100%; }
 body { margin: 0 0 40px 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #F2F2F2; overflow-x: hidden; }
 
+hr {
+    display: none !important;
+}
+
 mat-table {
     border-radius: 8px;
     margin-bottom: 20px

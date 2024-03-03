@@ -1,0 +1,73 @@
+<mat-card class="card-class">
+    <h1 class="title">Corpo e Sensação na Boca</h1 >
+    <span style="padding-bottom: 20px;">Guia de estudo</span>
+    <mat-accordion class="accordion">
+      <mat-expansion-panel class="expansion-panel" [expanded]="false">
+        <mat-expansion-panel-header >
+          <mat-panel-title class="additionals-title">
+            Pergunta relacionada
+          </mat-panel-title>
+          <mat-panel-description >
+
+          </mat-panel-description>
+           
+        </mat-expansion-panel-header>
+            <div class="formulas-title">
+              <span class="title-card">
+              T3 - {{ PORTUGUESEQUESTIONS.QS3TITLE }}
+              </span>
+              <ul>
+                <ng-container *ngFor="let question of PORTUGUESEQUESTIONS.QS3">
+                  <li>
+                    <strong>{{ question.value }}</strong> - {{ question.question }}
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expansion-panel" [expanded]="false">
+          <mat-expansion-panel-header >
+            <mat-panel-title class="additionals-title">
+              Corpo
+            </mat-panel-title>
+            <mat-panel-description >
+            </mat-panel-description>
+             
+          </mat-expansion-panel-header>
+          <div class="formulas-title">
+              <span class="title-card">
+                Bráctea
+              </span>
+              <span>
+                    <p class="formula" style="font-size: 20px;"></p>
+                </span>
+                <div style="display: flex; flex-direction: column;">
+                    
+                </div>
+              <div class="line-separator"></div>
+
+                
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expansion-panel" [expanded]="false">
+            <mat-expansion-panel-header >
+              <mat-panel-title class="additionals-title">
+                Sensação na Boca
+              </mat-panel-title>
+              <mat-panel-description >
+              </mat-panel-description>
+               
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expansion-panel" [expanded]="false">
+            <mat-expansion-panel-header >
+              <mat-panel-title class="additionals-title">
+                Controles
+              </mat-panel-title>
+              <mat-panel-description >
+              </mat-panel-description>
+               
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+    </mat-accordion>
+</mat-card>

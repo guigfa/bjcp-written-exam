@@ -1,0 +1,150 @@
+<mat-card class="card-class">
+    <h1 class="title">Mostura</h1 >
+    <span style="padding-bottom: 20px;">Guia de estudo</span>
+    <mat-accordion class="accordion">
+      <mat-expansion-panel class="expansion-panel" [expanded]="false">
+        <mat-expansion-panel-header >
+          <mat-panel-title class="additionals-title">
+            Pergunta relacionada
+          </mat-panel-title>
+          <mat-panel-description >
+
+          </mat-panel-description>
+           
+        </mat-expansion-panel-header>
+        <div class="formulas-title">
+          <span class="title-card">
+            T13 - {{ PORTUGUESEQUESTIONS.QS13TITLE }}
+          </span>
+          <ul>
+            <ng-container *ngFor="let question of PORTUGUESEQUESTIONS.QS13">
+              <li>
+                <strong>{{ question.value }}</strong> - {{ question.question }}
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expansion-panel" [expanded]="false">
+          <mat-expansion-panel-header >
+            <mat-panel-title class="additionals-title">
+              Efeitos da Mostura
+            </mat-panel-title>
+            <mat-panel-description >
+                
+            </mat-panel-description>
+             
+          </mat-expansion-panel-header>
+          <div class="formulas-title">
+              <span class="title-card">
+                Malte
+              </span>
+              <span>
+                    <p class="formula" style="font-size: 20px;"></p>
+                </span>
+                <div style="display: flex; flex-direction: column;">
+                    <span><strong>OG</strong> só os ultimos dígitos; exemplo: 1060 = 60</span>
+                    <span><strong>PESO</strong> em libras</span>
+                    <span><strong>PPG</strong> fornecido pelo fabricante - varia de acordo com o malte</span>
+                    <span><strong>VOLUME</strong> em galões</span>
+                    <span><strong>EFICIENCIA</strong> em porcentagem</span>
+                </div>
+              <div class="line-separator"></div>
+              <span class="title-card">
+                Lúpulo
+            </span>
+              <div class="line-separator"></div>
+              <span class="title-card">
+                    Água
+                    <p class="formula"></p>  
+                </span>
+                <div style="display: flex; flex-direction: column;">
+                    <span><strong>IBU</strong> é número inteiro</span>
+                    <span><strong>PESO</strong> em gramas</span>
+                    <span><strong>POTENCIAL DE EXTRAÇÃO</strong> depende do tempo de fervura</span>
+                    <span><strong>ALFA ÁCIDO</strong> em decimal</span>
+                    <span><strong>VOLUME</strong> em litros</span>
+                </div>
+                <div class="line-separator"></div>
+                <span class="title-card">
+                    Levedura
+                    <p class="formula">
+                        PITCH = (ºP * VOLUME(mL) * TAXA DE INOCULO)
+                    </p>  
+                </span>
+                <div style="display: flex; flex-direction: column;">
+                    <span><strong>PITCH</strong> é a quantidade de levedura (geralmente em bilhões)</span>
+                    <span><strong>ºP</strong> é a densidade inicial em graus Plato</span>
+                    <span><strong>VOLUME</strong> do mosto em mL</span>
+                    <span><strong>TAXA DE INOCULO</strong> = 0,75bi Ales; 1,5bi Lagers</span>
+                </div>
+                <div class="line-separator"></div>
+                
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expansion-panel" [expanded]="false">
+          <mat-expansion-panel-header >
+            <mat-panel-title class="additionals-title">
+              Técnicas
+            </mat-panel-title>
+            <mat-panel-description >
+                
+            </mat-panel-description>
+             
+          </mat-expansion-panel-header>
+          <div class="formulas-title">
+              <span class="title-card">
+                Infusão Simples
+              </span>
+              <span>
+                    <p class="formula" style="font-size: 20px;"></p>
+                </span>
+                <div style="display: flex; flex-direction: column;">
+                    <!-- <span><strong>OG</strong> só os ultimos dígitos; exemplo: 1060 = 60</span>
+                    <span><strong>PESO</strong> em libras</span>
+                    <span><strong>PPG</strong> fornecido pelo fabricante - varia de acordo com o malte</span>
+                    <span><strong>VOLUME</strong> em galões</span>
+                    <span><strong>EFICIENCIA</strong> em porcentagem</span> -->
+                </div>
+              <div class="line-separator"></div>
+              <span class="title-card">
+                Decocção
+            </span>
+              <div class="line-separator"></div>
+                <div style="display: flex; flex-direction: column;">
+                    <!-- <span><strong>IBU</strong> é número inteiro</span>
+                    <span><strong>PESO</strong> em gramas</span>
+                    <span><strong>POTENCIAL DE EXTRAÇÃO</strong> depende do tempo de fervura</span>
+                    <span><strong>ALFA ÁCIDO</strong> em decimal</span>
+                    <span><strong>VOLUME</strong> em litros</span> -->
+                </div>
+                <div class="line-separator"></div>
+                <span class="title-card">
+                    Sour Mash
+                    <p class="formula">
+                        PITCH = (ºP * VOLUME(mL) * TAXA DE INOCULO)
+                    </p>  
+                </span>
+                <div style="display: flex; flex-direction: column;">
+                    <span><strong>PITCH</strong> é a quantidade de levedura (geralmente em bilhões)</span>
+                    <span><strong>ºP</strong> é a densidade inicial em graus Plato</span>
+                    <span><strong>VOLUME</strong> do mosto em mL</span>
+                    <span><strong>TAXA DE INOCULO</strong> = 0,75bi Ales; 1,5bi Lagers</span>
+                </div>
+                <div class="line-separator"></div>
+                
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expansion-panel" [expanded]="false">
+            <mat-expansion-panel-header >
+              <mat-panel-title class="additionals-title">
+                Rampas de Mostura
+              </mat-panel-title>
+              <mat-panel-description >
+                  Base, tostado, caramelo, torrado e não convencionais
+              </mat-panel-description>
+               
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+    </mat-accordion>
+</mat-card>

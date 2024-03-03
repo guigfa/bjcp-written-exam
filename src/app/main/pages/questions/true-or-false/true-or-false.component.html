@@ -1,0 +1,72 @@
+  
+    <main>
+        <form [formGroup]="toggleForm">
+            <mat-button-toggle-group class="radio-group" formControlName="toggle" 
+             
+                (change)="getToggleValue($event)"
+            >
+                <mat-button-toggle value="PT">PT</mat-button-toggle>
+                <mat-button-toggle value="EN">EN</mat-button-toggle>
+        
+            </mat-button-toggle-group>
+        </form>
+        <div [formGroup]="form">
+            <mat-table [dataSource]="questionsToDisplay" *ngIf="!result" class="margin-table">
+                
+                <ng-container matColumnDef="value">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center; width: 150px;">Resposta</th>
+                    <td mat-cell *matCellDef="let element" style="margin: 0 auto; width: 150px;"> 
+                        <ng-container>
+                            
+                                <mat-radio-group #myRadioButton (change)="changeAnswers($event, element.id)">
+                                    F<mat-radio-button [value]="false"></mat-radio-button>
+                                    V<mat-radio-button [value]="true"></mat-radio-button>
+                                </mat-radio-group>
+                        </ng-container> 
+                    </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="description">
+                      <th mat-header-cell *matHeaderCellDef style="font-size: 30px; text-align: center;">Pergunta</th>
+                          <td mat-cell *matCellDef="let element" class="left-align vertical-center"> {{ (element.description) }} </td>
+                  </ng-container>
+    
+                  <tr mat-header-row *matHeaderRowDef="questionsColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: questionsColumns;"></tr>
+            </mat-table>
+        </div>
+        
+        <div class="buttons" *ngIf="!result">
+            <button mat-raised-button color="primary" class="send-button" [disabled]="checkedQuestion.length !== 20" (click)="checkAnswer()" >Enviar Respostas</button>
+            <button mat-stroked-button color="warn"class="send-button" (click)="back()">Voltar</button>
+        </div>
+
+    
+        <div *ngIf="result" class="d-flex flex-column gap-2">
+            
+            <span class="fs-2 pb-2" style="font-size:32px;">Parabéns, você acertou {{ count }}/{{questionsToDisplayPT.length}}, veja seus erros abaixo:</span>
+             
+            <mat-table [dataSource]="wrongQuestions" *ngIf="result && wrongQuestions.length" class="margin-table">
+                
+                <ng-container matColumnDef="value">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center; width: 150px;">Resposta Correta</th>
+                    <td mat-cell *matCellDef="let element" style="margin: 0 auto; width: 150px;"> 
+                        <ng-container>
+                                <span>{{ toggleForm.get('toggle').value === 'PT' ? (element.value === false ? "Falso" : "Verdadeiro") : (element.value === false ? "False" : "True")  }}</span>
+                        </ng-container> 
+                    </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="description">
+                      <th mat-header-cell *matHeaderCellDef style="font-size: 30px; text-align: center;">Pergunta</th>
+                          <td mat-cell *matCellDef="let element" class="left-align vertical-center"> {{ (element.description) }} </td>
+                  </ng-container>
+    
+                  <tr mat-header-row *matHeaderRowDef="questionsColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: questionsColumns;"></tr>
+            </mat-table>
+            <div class="buttons">
+                <button mat-raised-button class="send-button" color="secondary" (click)="backToTable()">Tentar novamente!</button>
+            </div>
+        </div>
+    </main> 

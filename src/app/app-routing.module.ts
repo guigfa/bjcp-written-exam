@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainPageComponent } from './main-page/main-page.component';
+import { HomeComponent } from './main/pages/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' }, 
   {
-    path: 'inicio', component: MainPageComponent
+    path: 'inicio', component: HomeComponent
   },
   { path: 'questoes',
-  loadChildren: () => import('./questions/questions.routing').then(m => m.QuestionsRoutingModule)
+  loadChildren: () => import('./main/pages/questions/questions.routing').then(m => m.QuestionsRoutingModule)
   },
   {
     path: 'guia-de-estudos',
-    loadChildren: () => import('./study-guide/study-guide.routing').then(m => m.StudyGuideRouting)
+    loadChildren: () => import('./main/pages/study-guide/study-guide.routing').then(m => m.StudyGuideRouting)
   }
 ];
 
