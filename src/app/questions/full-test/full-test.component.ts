@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
-import { ENGLISHQUESTIONS, PORTUGUESEQUESTIONS } from 'src/shared/material/questions/questions-per-language';
-import { beerCharacteristicsEN } from 'src/shared/material/questions/english-beer-characteristic';
-import { beerCharacteristicsPT } from 'src/shared/material/questions/portuguese-beer-characteristic';
-import { ENGLISH_QUESTIONS, PORTUGUESE_QUESTIONS } from 'src/shared/material/questions/questions-array';
-import { S0PT, S0TITLEPT } from 'src/shared/material/questions/portuguese-questionsMock';
-import { S0, S0TITLE } from 'src/shared/material/questions/english-questionsMock';
-import { formatTimer } from 'src/shared/material/utils/utils';
 import { TrueOrFalse } from 'src/shared/material/models/true-or-false.model';
+import { beerCharacteristicsEN } from 'src/shared/material/questions/english-beer-characteristic';
+import { S0, S0TITLE } from 'src/shared/material/questions/english-questionsMock';
+import { beerCharacteristicsPT } from 'src/shared/material/questions/portuguese-beer-characteristic';
+import { S0PT, S0TITLEPT } from 'src/shared/material/questions/portuguese-questionsMock';
+import { ENGLISH_QUESTIONS, PORTUGUESE_QUESTIONS } from 'src/shared/material/questions/questions-array';
+import { ENGLISHQUESTIONS, PORTUGUESEQUESTIONS } from 'src/shared/material/questions/questions-per-language';
 import { trueOrFalseMockEN, trueOrFalseMockPT } from 'src/shared/material/questions/true-or-false';
+import { formatTimer } from 'src/shared/material/utils/utils';
 
 const pdfMake = require('pdfmake/build/pdfmake.js');
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
@@ -194,13 +194,11 @@ export class FullTestComponent implements OnInit {
       this.dataSourceComparison = this.questionPTComparison.QS0;
       this.trueOrFalseQuestions = this.trueOrFalseFilteredPT;
     }
-    console.log(this.trueOrFalseQuestions)
     this.handleDataSources();
   }
 
   blur() {
     this.blured = !this.blured;
-    this.toggleForm.get('toggle').disable();
     setInterval(() => {
       if(this.timer > 0) this.attTimer();
     }, 1000)

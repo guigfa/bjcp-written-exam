@@ -1,6 +1,5 @@
 :root {
     font-family: 'Graphie', 'sans-serif';
-    overflow-x: hidden;
 }
 
 
@@ -8,13 +7,14 @@
 header {
     display: flex;
     justify-content: space-around;
-    min-width: 1536px;
+    min-width: 100vw;
     width: 100%;
 }
 
 mat-table {
     padding: 10px;
     border-radius: 8px;
+    box-sizing: border-box;
 }
 
 mat-toolbar {
@@ -58,8 +58,9 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 1300px;
-    margin: 20px auto;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem 2rem;
 }
 
 .send-button {

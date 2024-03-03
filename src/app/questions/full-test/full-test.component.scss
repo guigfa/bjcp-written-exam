@@ -38,7 +38,7 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 0 100px;
+    width: 70vw;
 }
 
 .question-title {
@@ -60,7 +60,7 @@
 }
 
 mat-table {
-    
+    box-sizing: border-box;   
     padding: 10px;
     border-radius: 8px;
 }
@@ -69,12 +69,4 @@ th, td {
     width: 30%;
     text-align: center;
     padding: 10px;
-}
-
-.recipe-table {
-    height: 300px !important;
-}
-
-.descriptor-table {
-    height: 300px !important;
 }

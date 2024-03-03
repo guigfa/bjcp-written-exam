@@ -7,8 +7,9 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 12px
-    ;
+    gap: 12px;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
     background-color: #f2f2f2;
 }
 
@@ -16,7 +17,7 @@ main {
 header {
     display: flex;
     justify-content: space-around;
-    min-width: 1536px;
+    min-width: 100vw;
     width: 100%;
 }
 
@@ -58,7 +59,7 @@ mat-card {
 .card-class {
     margin: 20px 0;
     padding: 10px 20px;
-    width: 800px;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,3 +93,8 @@ mat-card {
     padding: 30px;
 }
 
+@media (max-width: 1200px) {
+    .card-class {
+        width: 100%;
+    }
+}

@@ -73,8 +73,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     this.deployedTest ? this.allDeployedTest += this.deployedTest : '';
     this.finishedComparison ? this.allComparisons += this.finishedComparison : '';
-    this.test = localStorage.getItem('DETAILED_TRIES').replace('[', '').replace(']', '');
-    console.log(this.test)
 
     localStorage.clear();
 
@@ -87,12 +85,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
     localStorage.setItem("ALL_HITS", this.hits.toString());
     localStorage.setItem("TOTAL_TRIES", this.allQuestions.toString())
     localStorage.setItem("DETAILED_TRIES", JSON.stringify(this.detailedTries))
-    console.log(localStorage.getItem('DETAILED_TRIES'))
   }
 
   ngOnDestroy(): void {
 
-    console.log(this.test)
     this.setLocalStorage();
   }
 }

@@ -1,13 +1,12 @@
 :root {
     font-family: 'Graphie', 'sans-serif';
-    overflow-x: hidden;
 }
 
 
 header {
     display: flex;
     justify-content: space-around;
-    min-width: 1536px;
+    min-width: 100vw;
     width: 100%;
 }
 
@@ -34,17 +33,17 @@ ul li {
 }
 
 .margin-table {
-    width: 1300px;
-    padding: 20px;
+    width: 100%;
 }
 
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-sizing: border-box;
     align-items: center;
-    width: 1300px;
-    margin: 20px auto;
+    width: 100%;
+    padding: 1rem 2rem;
 }
 
 .send-button {

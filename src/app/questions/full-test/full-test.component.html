@@ -1,7 +1,7 @@
 <app-tool-bar></app-tool-bar>
 <div class="container">
     <form [formGroup]="toggleForm">
-        <mat-button-toggle-group class="radio-group" formControlName="toggle" [disabled]="!blured" (change)="getToggleValue($event)">
+        <mat-button-toggle-group class="radio-group" formControlName="toggle" (change)="getToggleValue($event)">
             <mat-button-toggle value="PT">PT</mat-button-toggle>
             <mat-button-toggle value="EN">EN</mat-button-toggle>
     
